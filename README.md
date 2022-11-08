@@ -1,8 +1,8 @@
 # Projeto adote seu pet
 
-# **⚠️EM CONSTRUÇÃO⚠️**
+### **⚠️EM CONSTRUÇÃO⚠️**
 
-## Ferramentas e tecnologias utilizadas
+#### Ferramentas e tecnologias utilizadas
 - FrameWork React Native
 - Expo
 - Visual studio
