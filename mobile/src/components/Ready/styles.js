@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   botao: {
     height: 50,
-    width: '90%',
+    width: 350,
     backgroundColor: '#772583',
     borderRadius: 8,
 
