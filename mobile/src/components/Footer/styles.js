@@ -15,8 +15,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
-    height: 52,
-
+    height: 52
   },
   blocoIcones: {
     justifyContent: 'center',

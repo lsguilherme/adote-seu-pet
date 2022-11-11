@@ -1,23 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
-import Menu from './src/components/Menu';
-import Ready from "./src/components/Ready";
+import Footer from './src/components/Footer';
+import { NomeDaPagina } from './src/components/NomeDaPagina';
+
+import { Perfil } from "./src/screens/Perfil";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Menu />
-      <Ready text="Pet publicado para adoção" botaotext="Voltar"/>
+      <StatusBar style={{}} />
+      <NomeDaPagina />
+
+      <Perfil />
+      <Footer />
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1,    
     backgroundColor: '#F3F3F3'
   },
 });

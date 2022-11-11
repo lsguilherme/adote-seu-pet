@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native';
 import { styles } from './styles';
 
-export default function Menu() {
+export default function Footer() {
 
     return (
     <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
