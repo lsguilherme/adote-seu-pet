@@ -1,9 +1,8 @@
 import { StyleSheet, View } from 'react-native';
-i
+
 export default function App() {
   return (
     <View style={styles.container}>
-
 
     </View>
   );
