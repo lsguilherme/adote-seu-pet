@@ -8,11 +8,7 @@ import { Perfil } from "./src/screens/Perfil";
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar style={{}} />
-      <NomeDaPagina />
 
-      <Perfil />
-      <Footer />
 
     </View>
   );
