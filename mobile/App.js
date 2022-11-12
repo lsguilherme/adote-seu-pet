@@ -1,25 +1,28 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View } from 'react-native';
+import Footer from './src/components/Footer';
+import { NomeDaPagina } from './src/components/NomeDaPagina';
 
-
-import { Login } from './src/screens/Login';
+import { Perfil } from "./src/screens/Perfil";
 
 export default function App() {
-  
-  const { Navigator, Screen } = createNativeStackNavigator();
-
   return (
-      <NavigationContainer>
+    <View style={styles.container}>
+      <StatusBar style={{}} />
+      <NomeDaPagina />
 
-        <StatusBar
-          backgroundColor='transparent'
-          translucent
-        />
-        <Navigator screenOptions={{headerShown: false}}>
-          <Screen name="Login" component={Login}/>
-        </Navigator>
+      <Perfil />
+      <Footer />
 
-     </NavigationContainer>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,    
+    backgroundColor: '#F3F3F3'
+  },
+});
