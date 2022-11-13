@@ -1,9 +1,8 @@
 export const THEME = {
     COLORS:{
 
-        BACKGROUND: '#FFFFFF',
+        BACKGROUND: '#000000',
 
-        TEXT_WHITE: '#FFFFFF',
         TEXT_BLACK: '#000000',
         TEXT_GRAY: '#4F4F4F',
         TEXT_PURPLE: '845EC2',
