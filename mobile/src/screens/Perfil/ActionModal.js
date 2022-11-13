@@ -1,42 +1,59 @@
 import { StyleSheet, SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
 
+import { Ready } from "../../components/Ready";
+
 export function ActionModal({ closeModal }) {
+
+    const Titulo = "Excluir conta"
+    const TextoSegundario = "Tem certeza que quer apagar a conta ?"
+
     return (
         <SafeAreaView style={styles.container}>
             <TouchableOpacity style={{ flex: 1, zIndex: 9 }} onPress={closeModal}
             ></TouchableOpacity>
 
             <View style={styles.content}>
-                <Text style={styles.ecluirContaText}>Excluir conta</Text>
-                <Text style={styles.temCertezaText}>Tem certeza que quer apagar a conta ?</Text>
+                <Text style={styles.textoPrincipal}>{Titulo}</Text>
+                <Text style={styles.textoSegundario}>{TextoSegundario}</Text>
 
                 <View style={styles.buttonsYesNo}>
-                <TouchableOpacity
-                        style={styles.NOactionButton}
-                        onPress={() => { }}><Text style={styles.NObuttonActionText}>Não</Text></TouchableOpacity>
                     <TouchableOpacity
+                        activeOpacity={0.4}
+                        style={styles.NOactionButton}
+                        onPress={closeModal}><Text style={styles.NObuttonActionText}>Não</Text></TouchableOpacity>
+                    <TouchableOpacity
+                        activeOpacity={0.7}
                         style={styles.YESactionButton}
-                        onPress={() => { }}><Text style={styles.YESbuttonActionText}>Sim</Text></TouchableOpacity>
+                        onPress={() => {  }}><Text style={styles.YESbuttonActionText}>Sim</Text></TouchableOpacity>
                 </View>
-
-
             </View>
+            <TouchableOpacity style={{ flex: 1, zIndex: 9 }} onPress={closeModal}
+            ></TouchableOpacity>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,        
+        flex: 1,
         alignSelf: 'center',
         alignContent: 'center'
     },
     content: {
         alignItems: 'center',
         padding: 20,
-        margin: 40,
         backgroundColor: 'white',
-        borderRadius: 8
+        borderRadius: 8,
+
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 7,
+        elevation: 1,
+        shadowRadius: 8
     },
     YESactionButton: {
         backgroundColor: '#FF7575',
@@ -56,21 +73,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 16,
         marginTop: 15,
-        marginRight: 40
+        marginRight: 40,
     },
     YESbuttonActionText: {
-        color: 'white'
+        color: 'white',
     },
     NObuttonActionText: {
-        color: 'black'
+        color: 'black',
     },
     buttonsYesNo: {
         flexDirection: 'row',
     },
-    ecluirContaText: {
-        paddingBottom: 15
+    textoPrincipal: {
+        paddingBottom: 15,
     },
-    temCertezaText: {
+    textoSegundario: {
 
     }
     //https://www.youtube.com/watch?v=ir4Jo7712M8

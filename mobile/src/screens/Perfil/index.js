@@ -15,10 +15,11 @@ export function Perfil() {
         <Modal
           visible={visibleModal}
           transparent={true}
+          
           onRequestClose={() => setVisibleModal(false)}
         >
-          <ActionModal 
-            closeModal={() => setVisibleModal(false)}/>
+          <ActionModal
+            closeModal={() => setVisibleModal(false)} />
         </Modal>
 
 

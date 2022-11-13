@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
 export default function Footer() {
@@ -9,25 +9,27 @@ export default function Footer() {
             <View style={styles.linha}></View>
 
             <View style={styles.icones}>
-                <View style={styles.blocoIcones}>
+                
+                <TouchableOpacity onPress={() => { }} style={styles.blocoIcones}>
                     <Image source={require('../../assets/IconInicio.png')} />
                     <Text>Inicio</Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.blocoIcones}>
+                <TouchableOpacity onPress={() => { }} style={styles.blocoIcones}>
                     <Image source={require('../../assets/iconAnunciar.png')} />
                     <Text>Anunciar</Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.blocoIcones}>
+                <TouchableOpacity onPress={() => { }} style={styles.blocoIcones}>
                     <Image source={require('../../assets/iconConversas.png')} />
                     <Text>Conversas</Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.blocoIcones}>
+                <TouchableOpacity onPress={() => { }} style={styles.blocoIcones}>
                     <Image source={require('../../assets/iconConta.png')} />
                     <Text>Conta</Text>
-                </View>
+                </TouchableOpacity>
+                
             </View>
 
         </View>

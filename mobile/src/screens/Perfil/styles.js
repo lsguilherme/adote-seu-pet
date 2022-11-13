@@ -14,8 +14,7 @@ export const styles = StyleSheet.create({
     margin: 9,
     padding: 20,
     alignItems: 'center',
-    flexDirection: 'row',
-    
+    flexDirection: 'row',    
   },
   scrollView: {
     height: '100%'

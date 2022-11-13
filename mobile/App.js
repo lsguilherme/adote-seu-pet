@@ -11,15 +11,7 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style={'auto'} />
 
-      <SafeAreaView >
 
-        <NomeDaPagina nomePagina="Conta" />
-
-        <Perfil />
-
-        <Footer />
-
-      </SafeAreaView>
     </View>
 
   );
