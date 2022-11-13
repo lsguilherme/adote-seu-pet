@@ -15,11 +15,15 @@ export const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     flexDirection: 'row',
+    
   },
   scrollView: {
     height: '100%'
   },
   texto: {
     paddingLeft: 15
-  }
+  },
+  backgroundColor: {
+    backgroundColor: '#F3F3F3',
+  },
 });

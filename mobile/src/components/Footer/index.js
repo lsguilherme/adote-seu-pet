@@ -4,8 +4,7 @@ import { styles } from './styles';
 export default function Footer() {
 
     return (
-    <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
-        <View style={styles.container}>
+        <View transparent={true} style={styles.container}>
 
             <View style={styles.linha}></View>
 
@@ -21,17 +20,16 @@ export default function Footer() {
                 </View>
 
                 <View style={styles.blocoIcones}>
-                    <Image source={require('../../assets/iconFavoritos.png')} />
-                    <Text>Favoritos</Text>
+                    <Image source={require('../../assets/iconConversas.png')} />
+                    <Text>Conversas</Text>
                 </View>
 
                 <View style={styles.blocoIcones}>
                     <Image source={require('../../assets/iconConta.png')} />
                     <Text>Conta</Text>
                 </View>
-
             </View>
+
         </View>
-    </View>
     );
 }

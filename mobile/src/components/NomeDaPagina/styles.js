@@ -6,11 +6,12 @@ export const styles = StyleSheet.create({
   },
   textAndImage: {
     backgroundColor: 'white',
-    
     alignItems: 'center',
-    paddingTop: 45,
+    paddingTop: 10,
     flexDirection: 'row',
-    paddingBottom: 10,   
+    paddingBottom: 10,
+    backgroundColor: 'white',
+    width: '100%'
   },
   linha: {
     height: 1,
@@ -18,12 +19,15 @@ export const styles = StyleSheet.create({
     backgroundColor: '#D7D7D7'
   },
   tamanho: {
-    padding: 18,
-    marginLeft: 15,
     backgroundColor: 'white',
+    right: 0,
+    marginLeft: 25,
+    zIndex: 2
   },
   texto: {
-    flex:1, 
-    paddingLeft: 125,    
+    textAlign: 'center',
+    position: 'absolute',
+    width: '100%',
+    zIndex: 1
   }
 });
