@@ -23,7 +23,7 @@ export function Login({ navigation }) {
             styles.botaoContainer, 
             {backgroundColor: THEME.COLORS.PRIMARY}
           ]}
-        onPress={()=>navigation.navigate('Cadastro',
+        onPress={()=>navigation.navigate('Inicio',
         {login: true})} 
         underlayColor={THEME.COLORS.PRIMARY}
       >
