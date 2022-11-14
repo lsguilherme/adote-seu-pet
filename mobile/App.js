@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { Inicio } from './src/screens/Inicio';
 import { LoginECadastro } from './src/screens/LoginECadastro';
+import { Home } from './src/screens/Home';
 
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
 
@@ -32,6 +33,7 @@ export default function App() {
         <Navigator screenOptions={{headerShown: false}}>
           <Screen name="Inicio" component={Inicio}/>
           <Screen name="LoginECadastro" component={LoginECadastro}/>
+          <Screen name="Home" component={Home}/>
         </Navigator>        
 
      </NavigationContainer>
