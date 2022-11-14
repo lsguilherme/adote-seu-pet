@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
-export default function Footer() {
+export function Footer() {
 
     return (
         <View transparent={true} style={styles.container}>

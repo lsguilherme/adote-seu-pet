@@ -6,7 +6,6 @@ import { THEME } from '../../theme';
 import { styles } from './styles';
 
 export function Login({ navigation }) {
-
   
   return (
     <SafeAreaView style={styles.screen}>

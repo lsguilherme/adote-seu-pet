@@ -1,22 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator, SafeAreaView } from '@react-navigation/native-stack';
-import { StatusBar } from 'expo-status-bar';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet } from 'react-native';
 
-
+import { Perfil } from "./src/screens/Perfil";
+import { Ready } from "./src/components/Ready";
 import { Login } from './src/screens/Login';
 import { Cadastro } from './src/screens/Cadastro';
 
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
 
 export default function App() {
-  
+
   const { Navigator, Screen } = createNativeStackNavigator();
 
   const [fontsLoaded] = useFonts({
-    Inter_400Regular, 
-    Inter_600SemiBold, 
-    Inter_700Bold, 
+    Inter_400Regular,
+    Inter_600SemiBold,
+    Inter_700Bold,
     Inter_900Black,
   });
 
@@ -24,27 +25,29 @@ export default function App() {
     return null;
   } else {
     return (
-  
-    <NavigationContainer>
+
+      <NavigationContainer>
 
         <StatusBar
           backgroundColor='transparent'
           translucent
         />
-        <Navigator screenOptions={{headerShown: false}}>
-          <Screen name="Login" component={Login}/>
-          <Screen name="Cadastro" component={Cadastro}/>
-        </Navigator>        
-      <StatusBar style={'auto'} />
+        <Navigator screenOptions={{ headerShown: false }}>
+          <Screen name="Perfil" component={Perfil} />
+          <Screen name="Ready" component={Ready} />
+          <Screen name="Login" component={Login} />
+          <Screen name="Cadastro" component={Cadastro} />
+          
+        </Navigator>
+        <StatusBar style={'auto'} />
+        
+      </NavigationContainer>
 
-
-     </NavigationContainer>
-
-  );
+    );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    
+
   }
 });

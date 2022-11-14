@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     position: 'absolute', 
     left: 0, 
     right: 0, 
-    bottom: '16%',
+    bottom: 100,
     width: '100%',
   },
   linha: {
@@ -19,10 +19,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
-    height: 60
+    height: 60,
   },
   blocoIcones: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 60,
+    width: '25%'
   }
 });
