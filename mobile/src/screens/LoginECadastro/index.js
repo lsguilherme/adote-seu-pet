@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 import { styles } from './styles';
 
-export function Cadastro({ route }) {
+export function LoginECadastro({ route }) {
   
   const [getLogin, setLogin] = useState();
 

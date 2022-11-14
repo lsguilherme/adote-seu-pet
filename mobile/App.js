@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 
 
-import { Login } from './src/screens/Login';
-import { Cadastro } from './src/screens/Cadastro';
+import { Inicio } from './src/screens/Inicio';
+import { LoginECadastro } from './src/screens/LoginECadastro';
 
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
 
@@ -30,8 +30,8 @@ export default function App() {
           translucent
         />
         <Navigator screenOptions={{headerShown: false}}>
-          <Screen name="Login" component={Login}/>
-          <Screen name="Cadastro" component={Cadastro}/>
+          <Screen name="Inicio" component={Inicio}/>
+          <Screen name="LoginECadastro" component={LoginECadastro}/>
         </Navigator>        
 
      </NavigationContainer>
