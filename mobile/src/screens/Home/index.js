@@ -5,7 +5,7 @@ import { SafeAreaView, View, ScrollView, Image, Text } from 'react-native';
 import { styles } from './styles';
 
 
-export function Inicio({ navigation }) {
+export function Home({ navigation }) {
   return (
     <SafeAreaView style={styles.screen}>
 
