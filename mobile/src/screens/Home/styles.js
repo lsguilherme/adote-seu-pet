@@ -14,7 +14,8 @@ export const styles = StyleSheet.create({
     marginHorizontal: 25,
     marginVertical: 30,
     borderRadius: 16,
-    backgroundColor: '#FFF186'
+    backgroundColor: '#FFF186',
+    alignItems: 'center',
   },
 
   bannerImage: {
