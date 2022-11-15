@@ -98,7 +98,7 @@ export function TodosOsPets() {
 
                     <Header
                         leftComponent={{ icon: 'arrow-left', color: '#fff', iconStyle: { color: '#000000' } }}
-                        centerComponent={{ text: 'Favoritos', style: { color: '#000000' } }}
+                        centerComponent={{ text: 'Todos os pets por perto', style: { color: '#000000' } }}
                         containerStyle={{
                             backgroundColor: '#F3F3F3',
                         }}
