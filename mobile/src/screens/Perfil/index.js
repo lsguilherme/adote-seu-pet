@@ -19,7 +19,6 @@ export function Perfil({navigation}) {
         </View>
 
         <View style={styles.bloco}>
-          <Button title='Minha Página' onPress= {() => navigation.navigate('AnuncioPet')}></Button>
           <Image source={require('../../assets/iconSeusPets.png')} />
           <Text style={styles.texto}>Seus pets anunciados</Text>
         </View>

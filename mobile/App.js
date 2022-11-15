@@ -9,6 +9,7 @@ import { Home } from './src/screens/Home';
 import { Perfil } from "./src/screens/Perfil";
 import { AnuncioPet } from './src/screens/AnuncioPet';
 import { Favoritos } from './src/screens/Favoritos';
+import {TodosOsPets} from './src/screens/TodosOsPets';
 
 
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
@@ -35,10 +36,11 @@ export default function App() {
           translucent
         />
         <Navigator screenOptions={{headerShown: false}}>
-          <Screen name="Inicio" component={Inicio}/>
+          <Screen name="TodosOsPets" component={TodosOsPets}/>
+          <Screen name="Favoritos" component={Favoritos}/>
           <Screen name="LoginECadastro" component={LoginECadastro}/>
           <Screen name="Home" component={Home}/>
-          <Screen name="Favoritos" component={Favoritos}/>
+          <Screen name="Inicio" component={Inicio}/>
           <Screen name="AnuncioPet" component={AnuncioPet}/>
           <Screen name="Perfil" component={Perfil}/>
         </Navigator>        
