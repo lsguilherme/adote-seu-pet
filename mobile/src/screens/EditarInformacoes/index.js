@@ -14,7 +14,7 @@ import { NomeDaPagina } from "../../components/NomeDaPagina";
 
 import { styles } from "./styles";
 
-export function AnuncioPet() {
+export function EditarInformacoes() {
   const [text, onChangeText] = React.useState("");
   const [number, onChangeNumber] = React.useState(null);
   const [focusComponent, setFocusComponent] = React.useState("");
@@ -25,12 +25,12 @@ export function AnuncioPet() {
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <SafeAreaView>
           <View style={styles.fotoPet}>
-            <Text style={styles.descricaoFotoPet}>ADICIONAR FOTO DO PET</Text>
+            <Text style={styles.descricaoFotoPet}>FOTO DO PERFIL</Text>
           </View>
           <View style={styles.blocoInterno}>
-            <Text style={styles.Text}>Nome do Pet</Text>
+            <Text style={styles.Text}>Nome</Text>
             <TextInput
-              placeholder="Insira o nome do Pet"
+              placeholder="Insira o seu nome"
               onChangeText={onChangeText}
               value={text}
               style={
@@ -45,13 +45,13 @@ export function AnuncioPet() {
                 setFocusComponent("name");
               }}
             />
-            <Text style={styles.Text}>Idade</Text>
+            <Text style={styles.Text}>Mudar Senha</Text>
             <TextInput
-              placeholder="Insira a idade do Pet"
+              placeholder="Insira a sua senha"
               onChangeText={onChangeNumber}
               value={number}
               style={
-                focusComponent === "idade"
+                focusComponent === "senha"
                   ? {
                     ...styles.bloco,
                     ...{ borderColor: "#772583", borderWidth: 2 },
@@ -59,17 +59,17 @@ export function AnuncioPet() {
                   : styles.bloco
               }
               onFocus={() => {
-                setFocusComponent("idade");
+                setFocusComponent("senha");
               }}
               keyboardType="numeric"
             />
-            <Text style={styles.Text}>Raça</Text>
+            <Text style={styles.Text}>Email</Text>
             <TextInput
-              placeholder="Insira a raça do Pet"
+              placeholder="Insira o seu e-mail"
               onChangeText={onChangeText}
               value={text}
               style={
-                focusComponent === "raça"
+                focusComponent === "e-mail"
                   ? {
                     ...styles.bloco,
                     ...{ borderColor: "#772583", borderWidth: 2 },
@@ -77,28 +77,12 @@ export function AnuncioPet() {
                   : styles.bloco
               }
               onFocus={() => {
-                setFocusComponent("raça");
+                setFocusComponent("e-mail");
               }}
             />
-            <Text style={styles.Text}>Sexo</Text>
-            <TextInput
-              placeholder="Insira o sexo do Pet"
-              onChangeText={onChangeText}
-              value={text}
-              style={
-                focusComponent === "sexo"
-                  ? {
-                    ...styles.bloco,
-                    ...{ borderColor: "#772583", borderWidth: 2 },
-                  }
-                  : styles.bloco
-              }
-              onFocus={() => {
-                setFocusComponent("sexo");
-              }}
-            />
+            
             <Button
-              title="Publicar"
+              title="Salvar"
               color={THEME.COLORS.PRIMARY}
 
             ></Button>

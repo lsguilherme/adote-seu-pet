@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 8,
     border: 1,
-    margin: 9,
+    margin: 15,
     padding: 20,
     alignItems: 'center',
     flexDirection: 'row',
@@ -56,6 +56,7 @@ export const styles = StyleSheet.create({
     
   },
   botao:{
+    
     // color:"#772583",
     // borderRadius:20,
     // width: 180
