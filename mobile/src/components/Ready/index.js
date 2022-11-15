@@ -1,26 +1,32 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
+import { useNavigation } from "@react-navigation/native";
 import ready from "../../assets/ready.png";
 
-//exemplpo
-//<Ready text="Pet publicado para adoção" botaotext="Voltar"/>
+//exemplo
+//onPress={() => {navigation.navigate("Ready", {text: 'Pet publicado para adoção',botaotext: 'Voltar'})}}
 
-export default function Ready(props) {
+export function Ready({route}) {
+
+    const navigation = useNavigation()
 
     return (
+
         <View style={styles.container}>
             <Image source={ready} />
             <View style={styles.textos}>
                 <Text style={styles.sucesso}>Sucesso</Text>
-                <Text style={styles.texto}>
-                    {props.text}
-                </Text>
+                <Text style={styles.texto}>{route.params?.text}</Text>
             </View>
 
-            <View style={styles.botao}>
-                <Text style={styles.botaoText}>{props.botaotext}</Text>
-            </View>
-
+            <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => navigation.navigate('Inicio')}
+            >
+                <View style={styles.botao}>
+                    <Text style={styles.botaoText}>{route.params?.botaotext}</Text>
+                </View>
+            </TouchableOpacity>
         </View>
     );
 }

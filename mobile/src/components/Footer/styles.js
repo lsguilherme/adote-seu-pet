@@ -2,7 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    width: '100%'
+    position: 'absolute', 
+    left: 0, 
+    right: 0, 
+    bottom: 0,
+    width: '100%',
   },
   linha: {
     height: 1,
@@ -10,16 +14,16 @@ export const styles = StyleSheet.create({
     backgroundColor: '#D7D7D7'
   },
   icones: {
-    width: '100%',
     backgroundColor: 'white',
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
-    height: 52,
-    
+    height: 60,
   },
   blocoIcones: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 60,
+    width: '25%'
   }
 });

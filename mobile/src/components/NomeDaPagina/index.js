@@ -3,15 +3,15 @@ import { View, Text, Image } from 'react-native';
 
 import { styles } from './styles';
 
-const nomePagina = 'Conta';
+//<NomeDaPagina nomePagina="EXEMPLO"/>
 
-export function NomeDaPagina() {
+export function NomeDaPagina(props) {
   return (
     <View style={styles.container}>
 
       <View style={styles.textAndImage}>
         <Image style={styles.tamanho} source={require('../../assets/iconBack.png')} />
-        <Text style={styles.texto}>{nomePagina}</Text>
+        <Text style={styles.texto}>{props.nomePagina}</Text>
       </View>
 
       <View style={styles.linha}></View>
