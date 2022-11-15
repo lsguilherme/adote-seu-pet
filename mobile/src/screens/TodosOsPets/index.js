@@ -4,7 +4,7 @@ import { Header } from 'react-native-elements'
 import { styles } from './styles';
 import { SearchBar } from 'react-native-elements';
 
-import Footer from "../../components/Footer";
+import { Footer } from "../../components/Footer";
 import { useState } from 'react';
 
 const pets = [

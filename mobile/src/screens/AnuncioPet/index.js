@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { THEME } from "../../theme";
 
-import Footer from "../../components/Footer";
+import { Footer } from "../../components/Footer";
 import { NomeDaPagina } from "../../components/NomeDaPagina";
 
 import { styles } from "./styles";
@@ -21,7 +21,7 @@ export function AnuncioPet() {
 
   return (
     <View style={styles.container}>
-      <NomeDaPagina />
+      <NomeDaPagina nomePagina="Anucie o seu pet"/>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <SafeAreaView>
           <View style={styles.fotoPet}>

@@ -3,7 +3,7 @@ import { View, Image, Text, SafeAreaView, FlatList } from 'react-native';
 import { Header } from 'react-native-elements'
 import { styles } from './styles';
 
-import Footer from "../../components/Footer";
+import { Footer } from "../../components/Footer";
 
 const pets = [
   {
@@ -24,7 +24,7 @@ const pets = [
     icone: require('../../assets/pet-icons/pet-femea.png'),
     local: 'Boa Vista'
   },
-  
+
 ];
 
 function PetCard({ item }) {
@@ -59,7 +59,7 @@ export function Favoritos() {
           />
 
         </View>
-        <FlatList data={pets} renderItem={PetCard} keyExtractor={(item) => item.nome} numColumns={2} horizontal={false}/>
+        <FlatList data={pets} renderItem={PetCard} keyExtractor={(item) => item.nome} numColumns={2} horizontal={false} />
 
 
 
@@ -69,7 +69,7 @@ export function Favoritos() {
 
 
 
-      
+
 
 
 

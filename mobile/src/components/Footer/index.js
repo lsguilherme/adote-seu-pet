@@ -18,7 +18,7 @@ export function Footer(navigate) {
                     <Text>Inicio</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('')} style={styles.blocoIcones}>
+                <TouchableOpacity onPress={() => navigation.navigate('AnuncioPet')} style={styles.blocoIcones}>
                     <Image source={require('../../assets/iconAnunciar.png')} />
                     <Text>Anunciar</Text>
                 </TouchableOpacity>
