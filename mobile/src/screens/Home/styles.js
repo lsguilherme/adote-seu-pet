@@ -107,28 +107,15 @@ export const styles = StyleSheet.create({
     },
 
     first: {
-      with: 154,
-      height: 247,
       marginLeft: 25,
-      marginRight: 8,
-      borderRadius: 16,
-      borderWidth: 1,
-      borderColor: THEME.COLORS.CARD_SHADOW
+      marginRight: 8
     },
 
     last: {
-      with: 154,
-      height: 247,
       marginLeft: 8,
-      marginRight: 25,
-      borderRadius: 16,
-      borderWidth: 1,
-      borderColor: THEME.COLORS.CARD_SHADOW
+      marginRight: 25
     },
 
-    image: {
-      with: '100%'
-    },
     nome: {
       fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
       fontSize: THEME.FONT_SIZE.SM,
