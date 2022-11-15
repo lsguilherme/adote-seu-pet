@@ -1,5 +1,5 @@
 export const THEME = {
-    COLORS:{
+    COLORS: {
 
         BACKGROUND: '#FFFFFF',
 

@@ -30,9 +30,9 @@ export function ExcluirContaModal({ closeModal }) {
                         activeOpacity={0.7}
                         style={styles.YESactionButton}
                         onPressOut={closeModal}
-                        
-                        onPress={() => navigation.navigate('Ready')}
-                        >
+
+                        onPress={() => {navigation.navigate("Ready", {text: 'Conta excluida', botaotext: 'Sair'})
+                        }}>
                         <Text style={styles.YESbuttonActionText}>Sim</Text>
                     </TouchableOpacity>
                 </View>

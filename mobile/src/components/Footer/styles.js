@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     position: 'absolute', 
     left: 0, 
     right: 0, 
-    bottom: 100,
+    bottom: 0,
     width: '100%',
   },
   linha: {
@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#D7D7D7'
   },
   icones: {
-    width: '100%',
     backgroundColor: 'white',
     justifyContent: 'space-around',
     alignItems: 'center',

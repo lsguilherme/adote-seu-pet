@@ -5,14 +5,20 @@ import { StyleSheet } from 'react-native';
 
 import { Perfil } from "./src/screens/Perfil";
 import { Ready } from "./src/components/Ready";
-import { Login } from './src/screens/Login';
-import { Cadastro } from './src/screens/Cadastro';
+import { Inicio } from './src/screens/Inicio';
+import { LoginECadastro } from './src/screens/LoginECadastro';
+import { Home } from './src/screens/Home';
+import { AnuncioPet } from './src/screens/AnuncioPet';
+import { Conversations } from './src/screens/Conversations';
+import { Chat } from "./src/screens/Chat";
+
 
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
 
 export default function App() {
 
   const { Navigator, Screen } = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
 
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -20,6 +26,7 @@ export default function App() {
     Inter_700Bold,
     Inter_900Black,
   });
+
 
   if (!fontsLoaded) {
     return null;
@@ -32,15 +39,18 @@ export default function App() {
           backgroundColor='transparent'
           translucent
         />
-        <Navigator screenOptions={{ headerShown: false }}>
-          <Screen name="Perfil" component={Perfil} />
-          <Screen name="Ready" component={Ready} />
-          <Screen name="Login" component={Login} />
-          <Screen name="Cadastro" component={Cadastro} />
-          
-        </Navigator>
+        <Stack.Navigator initialRouteName='Inicio' screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Perfil" component={Perfil} />
+          <Stack.Screen name="Ready" component={Ready} />
+          <Stack.Screen name="Inicio" component={Inicio} />
+          <Stack.Screen name="LoginECadastro" component={LoginECadastro} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="AnuncioPet" component={AnuncioPet} />
+          <Stack.Screen name="Conversations" component={Conversations} />
+          <Stack.Screen name="Chat" component={Chat} />
+        </Stack.Navigator>
         <StatusBar style={'auto'} />
-        
+
       </NavigationContainer>
 
     );
@@ -51,3 +61,4 @@ const styles = StyleSheet.create({
 
   }
 });
+

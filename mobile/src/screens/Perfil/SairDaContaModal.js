@@ -28,9 +28,10 @@ export function SairDaContaModal({ closeModal }) {
                         activeOpacity={0.7}
                         style={styles.YESactionButton}
                         onPressOut={closeModal}
-                        onPress={() => navigation.navigate('Login')}>
+                        onPress={() => navigation.navigate('Inicio')}>
                         <Text style={styles.YESbuttonActionText}>Sim</Text>
                     </TouchableOpacity>
+                    
                 </View>
             </View>
             <TouchableOpacity style={{ flex: 1, zIndex: 9 }} onPress={closeModal}
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     textoPrincipal: {
-        
+
         fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
         fontSize: THEME.FONT_SIZE.MD
     },

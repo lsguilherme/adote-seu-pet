@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 
 import { styles } from './styles';
 
-//<NomeDaPagina nomePagina="Conta"/>
+//<NomeDaPagina nomePagina="EXEMPLO"/>
 
 export function NomeDaPagina(props) {
   return (
