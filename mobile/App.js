@@ -38,8 +38,8 @@ export default function App() {
           <Screen name="Inicio" component={Inicio}/>
           <Screen name="LoginECadastro" component={LoginECadastro}/>
           <Screen name="Home" component={Home}/>
-          <Screen name="Favoritos" component={Favoritos}/>
           <Screen name="AnuncioPet" component={AnuncioPet}/>
+          <Screen name="Favoritos" component={Favoritos}/>
           <Screen name="Perfil" component={Perfil}/>
         </Navigator>        
 

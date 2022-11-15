@@ -1,15 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { THEME } from '../../theme';
 
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: StatusBar.currentHeight,
   },
   logo: {
     width: 216,
     height: 216,
-    marginTop: 170,
+    marginTop: 130,
     marginBottom: 143,
   },
   botaoContainer:{
