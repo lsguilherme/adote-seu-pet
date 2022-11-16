@@ -8,6 +8,8 @@ import {
   Text,
 } from "react-native";
 import { THEME } from "../../theme";
+import { useNavigation } from "@react-navigation/native";
+
 
 import { Footer } from "../../components/Footer";
 import { NomeDaPagina } from "../../components/NomeDaPagina";
@@ -18,6 +20,8 @@ export function EditarInformacoes() {
   const [text, onChangeText] = React.useState("");
   const [number, onChangeNumber] = React.useState(null);
   const [focusComponent, setFocusComponent] = React.useState("");
+  const navigation = useNavigation()
+
 
   return (
     <View style={styles.container}>
@@ -81,7 +85,7 @@ export function EditarInformacoes() {
               }}
             />
             
-            <Button
+            <Button onPress={() => { navigation.navigate('PetsAnunciados') }}
               title="Salvar"
               color={THEME.COLORS.PRIMARY}
 
