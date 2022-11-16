@@ -46,19 +46,21 @@ function PetCard({ item }) {
 export function Favoritos() {
   return (
     <View style={styles.container}>
-      <SafeAreaView style={styles.screen}>
-
-        <View>
+      <SafeAreaView>
+        
+        
 
           <Header
             leftComponent={{ icon: 'arrow-left', color: '#fff', iconStyle: { color: '#000000' } }}
             centerComponent={{ text: 'Favoritos', style: { color: '#000000' } }}
-            containerStyle={{
-              backgroundColor: '#F3F3F3',
-            }}
+            backgroundColor='#F3F3F3'
+            // containerStyle={{
+            //   backgroundColor: '#F3F3F3',
+            //   marginTop: 0
+            // }}
           />
 
-        </View>
+        
         <FlatList data={pets} renderItem={PetCard} keyExtractor={(item) => item.nome} numColumns={2} horizontal={false} />
 
 

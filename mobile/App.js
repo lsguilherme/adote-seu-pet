@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet } from 'react-native';
+import { StatusBar } from 'react-native';
 
 import { Perfil } from "./src/screens/Perfil";
 import { Ready } from "./src/components/Ready";
@@ -25,7 +24,6 @@ import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900
 export default function App() {
 
   const { Navigator, Screen } = createNativeStackNavigator();
-  const Stack = createNativeStackNavigator();
 
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -43,36 +41,31 @@ export default function App() {
       <NavigationContainer>
 
         <StatusBar
+          barStyle='dark-content'
           backgroundColor='transparent'
           translucent
         />
-        <Stack.Navigator initialRouteName='Inicio' screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Perfil" component={Perfil} />
-          <Stack.Screen name="Ready" component={Ready} />
-          <Stack.Screen name="Inicio" component={Inicio} />
-          <Stack.Screen name="LoginECadastro" component={LoginECadastro} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="AnuncioPet" component={AnuncioPet} />
-          <Stack.Screen name="Conversations" component={Conversations} />
-          <Stack.Screen name="EditarInformacoes" component={EditarInformacoes} />
-          <Stack.Screen name="TodosOsPets" component={TodosOsPets} />
-          <Stack.Screen name="Favoritos" component={Favoritos} />
-          <Stack.Screen name="Chat" component={Chat} />
-          <Stack.Screen name="EditarInformacoesPet" component={EditarInformacoesPet} />
-          <Stack.Screen name="PetsAnunciados" component={PetsAnunciados} />
-          <Stack.Screen name="ExcluirContaModal" component={ExcluirContaModal} />
-          <Stack.Screen name="SairDaContaModal" component={SairDaContaModal} />
-        </Stack.Navigator>
-        <StatusBar style={'auto'} />
+        <Navigator initialRouteName='Inicio' screenOptions={{ headerShown: false }}>
+          <Screen name="Perfil" component={Perfil} />
+          <Screen name="Ready" component={Ready} />
+          <Screen name="Inicio" component={Inicio} />
+          <Screen name="LoginECadastro" component={LoginECadastro} />
+          <Screen name="Home" component={Home} />
+          <Screen name="AnuncioPet" component={AnuncioPet} />
+          <Screen name="Conversations" component={Conversations} />
+          <Screen name="EditarInformacoes" component={EditarInformacoes} />
+          <Screen name="TodosOsPets" component={TodosOsPets} />
+          <Screen name="Favoritos" component={Favoritos} />
+          <Screen name="Chat" component={Chat} />
+          <Screen name="EditarInformacoesPet" component={EditarInformacoesPet} />
+          <Screen name="PetsAnunciados" component={PetsAnunciados} />
+          <Screen name="ExcluirContaModal" component={ExcluirContaModal} />
+          <Screen name="SairDaContaModal" component={SairDaContaModal} />
+        </Navigator>
 
       </NavigationContainer>
 
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-
-  }
-});
 

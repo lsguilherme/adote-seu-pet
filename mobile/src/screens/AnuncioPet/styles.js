@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { THEME } from '../../theme';
 
 export const styles = StyleSheet.create({
@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height:"100%",
     alignItems: 'center',
+    paddingTop: StatusBar.currentHeight,
     
   },
   bloco: {

@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
   screen:{
     flex: 1,
     display:"flex",
-    paddingTop: StatusBar.currentHeight,
+    paddingTop: StatusBar.currentHeight
   },
   scroll:{
     flex:1,
