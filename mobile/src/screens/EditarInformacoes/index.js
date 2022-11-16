@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { THEME } from "../../theme";
 
-import Footer from "../../components/Footer";
+import { Footer } from "../../components/Footer";
 import { NomeDaPagina } from "../../components/NomeDaPagina";
 
 import { styles } from "./styles";

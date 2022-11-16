@@ -14,6 +14,8 @@ import { TodosOsPets } from './src/screens/TodosOsPets';
 import { EditarInformacoes } from './src/screens/EditarInformacoes'
 import { Conversations } from './src/screens/Conversations';
 import { Chat } from "./src/screens/Chat";
+import { EditarInformacoesPet } from './src/screens/EditarInformacoesPet';
+import { PetsAnunciados } from './src/screens/PetsAnunciados';
 
 
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
@@ -42,7 +44,7 @@ export default function App() {
           backgroundColor='transparent'
           translucent
         />
-        <Stack.Navigator initialRouteName='Inicio' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='EditarInformacoesPet' screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Perfil" component={Perfil} />
           <Stack.Screen name="Ready" component={Ready} />
           <Stack.Screen name="Inicio" component={Inicio} />
@@ -54,6 +56,8 @@ export default function App() {
           <Stack.Screen name="TodosOsPets" component={TodosOsPets} />
           <Stack.Screen name="Favoritos" component={Favoritos} />
           <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="EditarInformacoesPet" component={EditarInformacoesPet} />
+          <Stack.Screen name="PetsAnunciados" component={PetsAnunciados} />
         </Stack.Navigator>
         <StatusBar style={'auto'} />
 
