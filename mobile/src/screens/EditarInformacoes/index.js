@@ -25,7 +25,7 @@ export function EditarInformacoes() {
 
   return (
     <View style={styles.container}>
-      <NomeDaPagina />
+      <NomeDaPagina nomePagina="Editar informaçoes do seu perfil" />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <SafeAreaView>
           <View style={styles.fotoPet}>
@@ -84,7 +84,7 @@ export function EditarInformacoes() {
                 setFocusComponent("e-mail");
               }}
             />
-            
+
             <Button onPress={() => { navigation.navigate('PetsAnunciados') }}
               title="Salvar"
               color={THEME.COLORS.PRIMARY}

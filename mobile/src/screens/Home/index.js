@@ -2,14 +2,16 @@ import { React, useState } from 'react';
 import { SafeAreaView, View, ScrollView, Image, Text, Modal, TouchableOpacity, Alert, Pressable } from 'react-native';
 import { Footer } from '../../components/Footer';
 import { ActionMaisModal } from './ActionMaisModal';
+import { useNavigation } from "@react-navigation/native";
+
 // import { THEME } from '../../theme';
 
 import { styles } from './styles';
 
-export function Home({ navigation }) {
+export function Home() {
 
   const [maisModal, setMaisModal] = useState(false);
-
+  const navigation = useNavigation()
   const [modalVisible, setModalVisible] = useState(false);
   const [selectValue, setSelectValue] = useState('Localização');
 
@@ -133,7 +135,7 @@ export function Home({ navigation }) {
 
         <View style={styles.pets.labels}>
           <Text style={styles.pets.label}>10 Pets por perto</Text>
-          <Text style={styles.pets.link}>ver todos</Text>
+          <Text style={styles.pets.link} onPress={() => { navigation.navigate('TodosOsPets') }}>ver todos</Text>
         </View>
 
         <ScrollView

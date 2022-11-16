@@ -13,11 +13,13 @@ import { Footer } from "../../components/Footer";
 import { NomeDaPagina } from "../../components/NomeDaPagina";
 
 import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 export function AnuncioPet() {
   const [text, onChangeText] = React.useState("");
   const [number, onChangeNumber] = React.useState(null);
   const [focusComponent, setFocusComponent] = React.useState("");
+  const navigation = useNavigation()
 
   return (
     <View style={styles.container}>
@@ -97,7 +99,7 @@ export function AnuncioPet() {
                 setFocusComponent("sexo");
               }}
             />
-            <Button
+            <Button onPress={() => { navigation.navigate('PetsAnunciados') }}
               title="Publicar"
               color={THEME.COLORS.PRIMARY}
 

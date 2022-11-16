@@ -16,9 +16,11 @@ import { Conversations } from './src/screens/Conversations';
 import { Chat } from "./src/screens/Chat";
 import { EditarInformacoesPet } from './src/screens/EditarInformacoesPet';
 import { PetsAnunciados } from './src/screens/PetsAnunciados';
-
+import { ExcluirContaModal } from './src/screens/Perfil/ExcluirContaModal';
+import { SairDaContaModal } from './src/screens/Perfil/SairDaContaModal'
 
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
+
 
 export default function App() {
 
@@ -58,6 +60,8 @@ export default function App() {
           <Stack.Screen name="Chat" component={Chat} />
           <Stack.Screen name="EditarInformacoesPet" component={EditarInformacoesPet} />
           <Stack.Screen name="PetsAnunciados" component={PetsAnunciados} />
+          <Stack.Screen name="ExcluirContaModal" component={ExcluirContaModal} />
+          <Stack.Screen name="SairDaContaModal" component={SairDaContaModal} />
         </Stack.Navigator>
         <StatusBar style={'auto'} />
 
