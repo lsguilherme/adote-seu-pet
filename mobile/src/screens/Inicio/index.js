@@ -7,32 +7,32 @@ import { styles } from './styles';
 
 export function Inicio({ navigation }) {
 
-  
+
   return (
     <SafeAreaView style={styles.screen}>
-      
-      <View style= {{alignItems: 'center'}}>
-        <Image 
-          source = {require('../../assets/Logo-Inicio.png')}
-          style = {styles.logo}
+
+      <View style={{ alignItems: 'center' }}>
+        <Image
+          source={require('../../assets/Logo-Inicio.png')}
+          style={styles.logo}
         />
       </View>
-      
-      <TouchableHighlight 
+
+      <TouchableHighlight
         style={[
-            styles.botaoContainer, 
-            {backgroundColor: THEME.COLORS.PRIMARY}
-          ]}
-        onPress={()=>navigation.navigate('Home',
-        {login: true})} 
+          styles.botaoContainer,
+          { backgroundColor: THEME.COLORS.PRIMARY }
+        ]}
+        onPress={() => navigation.navigate('Home',
+          { login: true })}
         underlayColor={THEME.COLORS.PRIMARY}
       >
         <Text style={styles.name}>ENTRAR</Text>
       </TouchableHighlight>
 
-      <TouchableHighlight 
-        style={[styles.botaoContainer, {backgroundColor: THEME.COLORS.SECONDARY, marginTop: 15}]} 
-        onPress={()=>navigation.navigate('LoginECadastro', {login: false})} 
+      <TouchableHighlight
+        style={[styles.botaoContainer, { backgroundColor: THEME.COLORS.SECONDARY, marginTop: 15 }]}
+        onPress={() => navigation.navigate('LoginECadastro', { login: false })}
         underlayColor={THEME.COLORS.SECONDARY}
       >
         <Text style={styles.name}>CADASTRAR</Text>

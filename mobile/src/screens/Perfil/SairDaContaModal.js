@@ -10,8 +10,10 @@ export function SairDaContaModal({ closeModal }) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <TouchableOpacity style={{ flex: 1, zIndex: 9 }} onPress={closeModal}
-            ></TouchableOpacity>
+            <TouchableOpacity
+                style={{ flex: 1, zIndex: 9 }}
+                onPress={closeModal}>
+            </TouchableOpacity>
 
             <View style={styles.content}>
                 <Text style={styles.textoPrincipal}>{titulo}</Text>
@@ -31,7 +33,7 @@ export function SairDaContaModal({ closeModal }) {
                         onPress={() => navigation.navigate('Inicio')}>
                         <Text style={styles.YESbuttonActionText}>Sim</Text>
                     </TouchableOpacity>
-                    
+
                 </View>
             </View>
             <TouchableOpacity style={{ flex: 1, zIndex: 9 }} onPress={closeModal}

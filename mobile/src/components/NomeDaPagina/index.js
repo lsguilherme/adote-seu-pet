@@ -10,7 +10,7 @@ export function NomeDaPagina(props) {
     <View style={styles.container}>
 
       <View style={styles.textAndImage}>
-        <Image style={styles.tamanho} source={require('../../assets/iconBack.png')} />
+        <Image onPr style={styles.tamanho} source={require('../../assets/iconBack.png')} />
         <Text style={styles.texto}>{props.nomePagina}</Text>
       </View>
 

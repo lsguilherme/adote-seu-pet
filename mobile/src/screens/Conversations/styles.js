@@ -6,17 +6,14 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F3F3F3',
     alignItems: 'center',
-    marginTop: 15
   },
   imgText: {
     width: 350,
     height: 80,
     alignItems: 'center',
     flexDirection: 'row',
-
     borderRadius: 16,
     margin: 5,
-
   },
   img: {
     height: 70,
@@ -25,7 +22,8 @@ export const styles = StyleSheet.create({
     marginRight: 13,
   },
   scrollView: {
-    height: '100%'
+    height: '100%',
+    fontSize: THEME.FONT_SIZE.LG
   },
   Nome: {
    color: '#5C5C5C',
