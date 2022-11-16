@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   img: {
     height: 70,
     width: 70,
-    borderRadius: '50%',
+    borderRadius: 50,
     marginRight: 13,
   },
   scrollView: {

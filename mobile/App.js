@@ -44,7 +44,7 @@ export default function App() {
           backgroundColor='transparent'
           translucent
         />
-        <Stack.Navigator initialRouteName='EditarInformacoesPet' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='Inicio' screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Perfil" component={Perfil} />
           <Stack.Screen name="Ready" component={Ready} />
           <Stack.Screen name="Inicio" component={Inicio} />
