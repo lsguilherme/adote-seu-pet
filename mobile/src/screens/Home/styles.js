@@ -7,6 +7,59 @@ export const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight
   },
 
+  selectLocal: {
+    width: 275,
+    height: 39,
+    marginTop: 30,
+    marginLeft: 25,
+    backgroundColor: THEME.COLORS.BACKGROUND,
+    paddingHorizontal: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderRadius: 16,
+
+    texto: {
+      fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
+      fontSize: THEME.FONT_SIZE.SM,
+      color: THEME.COLORS.TEXT_GRAY
+    },
+
+    pesquisa: {
+      flex: 1,
+      with: 57,
+      height: 39,
+      marginTop: 30,
+      marginRight: 25,
+      marginLeft: 8,
+      borderRadius: 16,
+      backgroundColor: THEME.COLORS.BACKGROUND,
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  },
+
+  modal: {
+    container: {
+      flex: 1,
+      with: 275,
+      marginTop: 74,
+      marginLeft: 25,
+      backgroundColor: '#FFFFFF',
+      borderRadius: 16
+    },
+
+    item: {
+      padding: 12,
+      borderBottomColor: 'rgba(79, 79, 79, 0.2)',
+      borderBottomWidth: 1,
+    },
+
+    last: {
+      borderBottomWidth: 0
+    }
+  },
+
   banner: {
     flexDirection: 'row',
     width: 340,
