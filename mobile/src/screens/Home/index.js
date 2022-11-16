@@ -1,12 +1,16 @@
-import React from 'react';
-import { SafeAreaView, View, ScrollView, Image, Text } from 'react-native';
+import { React, useState } from 'react';
+import { SafeAreaView, View, ScrollView, Image, Text, Modal, TouchableOpacity } from 'react-native';
 import { Footer } from '../../components/Footer';
+import { ActionMaisModal } from './ActionMaisModal';
 // import { THEME } from '../../theme';
 
 import { styles } from './styles';
 
 
 export function Home({ navigation }) {
+
+  const [maisModal, setMaisModal] = useState(false);
+
   return (
     <>
       <SafeAreaView style={styles.screen}>
@@ -54,12 +58,21 @@ export function Home({ navigation }) {
             <Text style={styles.petMenu.texto}>Passaros</Text>
           </View>
 
-          <View style={styles.petMenu.itemLast}>
+          <TouchableOpacity onPress={() => setMaisModal(true)} style={styles.petMenu.itemLast}>
             <View style={styles.petMenu.iconPlus}>
               <Image source={require('../../assets/pet-icons/plus-icon.png')} />
             </View>
             <Text style={styles.petMenu.texto}>Mais</Text>
-          </View>
+
+            <Modal
+              visible={maisModal}
+              
+              onRequestClose={() => setMaisModal(false)}>
+              <ActionMaisModal
+              closeModal={() => setMaisModal(false)}/>
+            </Modal>
+
+          </TouchableOpacity>
         </ScrollView>
 
         <View style={styles.pets.labels}>

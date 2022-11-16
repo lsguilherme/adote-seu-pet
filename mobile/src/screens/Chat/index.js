@@ -4,10 +4,10 @@ import { Footer } from '../../components/Footer';
 
 import { NomeDaPagina } from '../../components/NomeDaPagina';
 
-import { styles } from '../Conversations/styles';
+import { styles } from './styles';
 import { useNavigation } from "@react-navigation/native";
 
-export function Chat(route, navigate) {
+export function Chat(navigate) {
 
     const navigation = useNavigation()
 
@@ -15,13 +15,15 @@ export function Chat(route, navigate) {
         <>
             <SafeAreaView>
 
-                <NomeDaPagina nomePagina={route.params?.nome} />
+                <NomeDaPagina nomePagina="Nome do anunciante" />
 
                 <View style={styles.container}>
 
                     <ScrollView style={styles.scrollView}>
 
-                        <Text></Text>
+                        <View style={styles.chatStyle}>
+                            <Text>Chat</Text>
+                        </View>
 
                     </ScrollView>
                 </View>

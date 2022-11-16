@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     width: '100%',
     alignItems: 'center',
-    marginTop: 5,
+    paddingtop: 5,
   },
   bloco: {
     height: 53,
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 8,
     margin: 9,
-    padding: 20,
+    paddingLeft: 20,
     alignItems: 'center',
     flexDirection: 'row',    
   },

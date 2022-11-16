@@ -153,6 +153,7 @@ export const styles = StyleSheet.create({
         fontSize: THEME.FONT_SIZE.SM,
         color: THEME.COLORS.TEXT_GRAY
       }
+
     }
   }
 });

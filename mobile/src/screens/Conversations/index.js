@@ -23,7 +23,7 @@ export function Conversations(navigate) {
 
           <ScrollView style={styles.scrollView}>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Chat', {nome: 'Guilherme lá ceda mexicano'})} style={styles.imgText}>
+            <TouchableOpacity onPress={() => navigation.navigate('Chat')} style={styles.imgText}>
               <Image style={styles.img} source={Pet2} />
               <View style={styles.nomeTitulo}>
                 <Text style={styles.Nome}>Guilherme lá ceda mexicano</Text>
