@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Image, Text, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
-import { Header, Button } from 'react-native-elements'
+import { View, Image, Text, SafeAreaView, FlatList } from 'react-native';
+import { Header } from 'react-native-elements'
 import { styles } from './styles';
 
 import { Footer } from "../../components/Footer";
@@ -43,27 +43,22 @@ function PetCard({ item }) {
   );
 }
 
-export function Favoritos({ navigation }) {
+export function PetsAnunciados() {
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={styles.screen}>
 
+        <View>
 
+          <Header
+            leftComponent={{ icon: 'arrow-left', color: '#fff', iconStyle: { color: '#000000' } }}
+            centerComponent={{ text: 'Seus pets anunciados', style: { color: '#000000' } }}
+            containerStyle={{
+              backgroundColor: '#F3F3F3',
+            }}
+          />
 
-        <Header
-          leftComponent={
-            <Button icon={<TouchableOpacity
-              onPress={() => navigation.goBack()}
-            >
-              <Image source={require('../../assets/iconBack.png')} />
-            </TouchableOpacity>}
-              buttonStyle={{ backgroundColor: 'transparent' }}
-            />}
-          centerComponent={{ text: 'Favoritos', style: { color: '#000000', marginTop: 15 } }}
-          backgroundColor='#F3F3F3'
-        />
-
-
+        </View>
         <FlatList data={pets} renderItem={PetCard} keyExtractor={(item) => item.nome} numColumns={2} horizontal={false} />
 
 

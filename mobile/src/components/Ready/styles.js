@@ -3,11 +3,12 @@ import { THEME } from '../../theme';
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
-    width: '100%'
+    justifyContent: 'center'
   },
   textos: {
-    margin: 50,
+    margin: 40,
     alignItems: 'center'
   },
   sucesso: {
@@ -16,9 +17,11 @@ export const styles = StyleSheet.create({
     fontSize: 26
   },
   texto: {
+    marginTop: 10,
+    width: '100%',
     color: THEME.COLORS.TEXT_BLACK,
     fontFamily: THEME.FONT_FAMILY.REGULAR,
-    fontSize: THEME.FONT_SIZE.LG
+    fontSize: 22
   },
   botao: {
     height: 50,

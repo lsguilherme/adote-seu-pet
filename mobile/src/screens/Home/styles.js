@@ -155,8 +155,8 @@ export const styles = StyleSheet.create({
       height: 247,
       marginHorizontal: 8,
       borderRadius: 16,
-      borderWidth: 1,
-      borderColor: THEME.COLORS.CARD_SHADOW
+      borderColor: THEME.COLORS.CARD_SHADOW,
+      backgroundColor: 'white'
     },
 
     first: {
@@ -193,6 +193,7 @@ export const styles = StyleSheet.create({
         fontSize: THEME.FONT_SIZE.SM,
         color: THEME.COLORS.TEXT_GRAY
       }
+
     }
   }
 });
