@@ -1,13 +1,70 @@
-import React from 'react';
-import { SafeAreaView, View, ScrollView, Image, Text } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, View, ScrollView, TouchableOpacity, Image, Text, Modal, Alert, Pressable } from 'react-native';
 // import { THEME } from '../../theme';
 
 import { styles } from './styles';
-
+import Footer from '../../components/Footer';
 
 export function Home({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectValue, setSelectValue] = useState('Localização');
+
   return (
     <SafeAreaView style={styles.screen}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <TouchableOpacity
+          activeOpacity={1}
+          style={styles.selectLocal}
+          onPress={() => setModalVisible(!modalVisible)}>
+          <Text style={styles.selectLocal.texto}>{selectValue}</Text>
+          <Image source={require('../../assets/icons/arrow-down.png')} />
+        </TouchableOpacity>
+
+        <View style={styles.selectLocal.pesquisa}>
+          <TouchableOpacity>
+            <Image source={require('../../assets/icons/search.png')} />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+
+        <ScrollView style={[styles.modal.container, { width: 275, maxHeight: 275 }]}>
+          <Pressable
+            onPress={() => {
+              setModalVisible(false)
+              setSelectValue('Jaboatão dos Guararapes')
+            }}
+          >
+            <Text style={styles.modal.item}>Jaboatão dos Guararapes</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={() => {
+              setModalVisible(false)
+              setSelectValue('Recife')
+            }}
+          >
+            <Text style={styles.modal.item}>Recife</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={() => {
+              setModalVisible(false)
+              setSelectValue('Olinda')
+            }}
+          >
+            <Text style={[styles.modal.item, styles.modal.last]}>Olinda</Text>
+          </Pressable>
+        </ScrollView>
+      </Modal>
 
       <View style={styles.banner} overflow='hidden'>
         <Image
@@ -71,15 +128,17 @@ export function Home({ navigation }) {
         style={styles.scrollPets}
       >
 
-        <View style={styles.card.first} overflow='hidden'>
-          <Image source={require('../../assets/pet-images/pet-1.jpg')} />
-          <Text style={styles.card.nome}>Fox</Text>
-          <View style={styles.card.conteudo.box}>
-            <Text style={styles.card.conteudo.local}>
-              Jaboatão dos Guararapes Jaboatão dos Guararapes
-            </Text>
-            <Image source={require('../../assets/pet-icons/pet-macho.png')} />
-          </View>
+        <View style={[styles.card.container, styles.card.first]} overflow='hidden'>
+          <TouchableOpacity onPress={() => navigation.navigate('Favoritos')}>
+            <Image source={require('../../assets/pet-images/pet-1.jpg')} />
+            <Text style={styles.card.nome}>Fox</Text>
+            <View style={styles.card.conteudo.box}>
+              <Text style={styles.card.conteudo.local}>
+                Jaboatão dos Guararapes Jaboatão dos Guararapes
+              </Text>
+              <Image source={require('../../assets/pet-icons/pet-macho.png')} />
+            </View>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.card.container} overflow='hidden'>
@@ -91,7 +150,7 @@ export function Home({ navigation }) {
           </View>
         </View>
 
-        <View style={styles.card.last} overflow='hidden'>
+        <View style={[styles.card.container, styles.card.last]} overflow='hidden'>
           <Image source={require('../../assets/pet-images/pet-3.jpg')} />
           <Text style={styles.card.nome}>Fox</Text>
           <View style={styles.card.conteudo.box}>
@@ -100,6 +159,8 @@ export function Home({ navigation }) {
           </View>
         </View>
       </ScrollView>
+
+      <Footer />
     </SafeAreaView>
   );
 }
