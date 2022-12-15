@@ -1,14 +1,16 @@
-const express = require('express');
-require('dotenv').config()
+import express from 'express';
+import dotenv from 'dotenv'
 
-const routes = require('./routes/index')
+dotenv.config()
+
+import indexRoutes from "./routes/index.js"
 
 const app = express()
 
 app.use(express.json())
 
-app.use(routes)
+app.use(indexRoutes)
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5011;
 
 app.listen(PORT, console.log(`Server iniciado: http://localhost:${PORT}`))
