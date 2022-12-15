@@ -1,14 +1,11 @@
-const express = require('express')
-const router = express.Router()
-const usersRoutes = require('./users')
-const petsRoutes = require('./pets')
+import express from 'express'
 
-router.get('/', (req, res) => {
-    res.send('API rodando')
-    console.log(`${res.statusCode} ${req.method} '${req.url}'`)
-})
+const router = express.Router();
 
-router.use('/users', usersRoutes)
-router.use('/pets', petsRoutes)
+import usersRoutes from "./users.js";
+//import { petsRoutes } from "./pets.js";
 
-module.exports = router;
+router.use('/usuarios', usersRoutes)
+//router.use('/pets', petsRoutes)
+
+export default router;
