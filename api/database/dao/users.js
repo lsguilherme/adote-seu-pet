@@ -19,19 +19,27 @@ const Usuario = sequelize.define(
 
 export const operations = {
     create: async function (nome) {
-        const usuario = await Usuario.create({ nome: nome });
-        return usuario
+        return await Usuario.create({ nome: nome });
     },
     findAllUsers: async function () {
         return await Usuario.findAll();
     },
     findUser: async function (id) {
-        return await Usuario.findAll({
-            where: { id: id }
-        });
+        return await Usuario.findByPk(id);
+    },
+    update: async function (id, nome) {
+        const user = await Usuario.findByPk(id);
+        if (user) {
+            return await Usuario.update(
+                { "nome": nome },
+                { where: { id: id } }
+            )
+        } else {
+            return null
+        }
     },
     delete: async function (id) {
-        const usuario = await Usuario.destroy({
+        return await Usuario.destroy({
             where: { id: id }
         });
     }
