@@ -24,7 +24,15 @@ export const operations = {
     },
     findAllUsers: async function () {
         return await Usuario.findAll();
+    },
+    findUser: async function (id) {
+        return await Usuario.findAll({
+            where: { id: id }
+        });
+    },
+    delete: async function (id) {
+        const usuario = await Usuario.destroy({
+            where: { id: id }
+        });
     }
 }
-
-
