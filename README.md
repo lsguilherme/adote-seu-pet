@@ -6,4 +6,4 @@
 - FrameWork React Native
 - Expo
 - Visual studio
-- Back-end a definir
+- Node.js
