@@ -57,5 +57,13 @@ export const operations = {
         return await Usuario.destroy({
             where: { id: id }
         });
+    },
+    findUserByEmail: async function (email) {
+        const usuario = await Usuario.findOne({ where: { email: email } });
+        if (usuario) {
+            return usuario
+        } else {
+            return false
+        }
     }
 }
