@@ -15,14 +15,14 @@ export const getUser = (request, response) => {
 }
 
 export const save = (request, response) => {
-    operations.create(request.body.nome).then(results => {
-        if (results.length > 0) response.send(results)
+    operations.create(request.body).then(results => {
+        if (results) response.send(results)
         else response.sendStatus(404)
     })
 }
 
 export const update = (request, response) => {
-    operations.update(request.params.id, request.body.nome).then(results => {
+    operations.update(request.params.id, request.body).then(results => {
         if (results) response.sendStatus(200)
         else response.sendStatus(404)
     })
