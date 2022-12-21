@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 import bcrypt from "bcrypt";
 
 const Usuario = sequelize.define(
-    'usuarios',
+    'usuario',
     {
         id: {
             type: DataTypes.INTEGER,
