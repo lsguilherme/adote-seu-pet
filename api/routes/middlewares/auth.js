@@ -5,6 +5,14 @@ dotenv.config();
 export const auth = (request, response, next) => {
 
     const authHeader = request.headers.authorization;
+
+    if (!authHeader) {
+        response.json({
+            erro: true,
+            message: 'Token inválido!'
+        })
+    }
+
     const [, token] = authHeader.split(' ');
 
     try {
