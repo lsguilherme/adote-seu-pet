@@ -19,14 +19,18 @@ export const getUser = (request, response) => {
 }
 
 export const save = (request, response) => {
-    operations.create(request.body).then(results => {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(request.body.senha, salt);
+    operations.create({ nome: request.body.nome, email: request.body.email, senha: hash }).then(results => {
         if (results) response.send(results)
         else response.sendStatus(404)
     })
 }
 
 export const update = (request, response) => {
-    operations.update(request.params.id, request.body).then(results => {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(request.body.senha, salt);
+    operations.update(request.params.id, { nome: request.body.nome, email: request.body.email, senha: hash }).then(results => {
         if (results) response.sendStatus(200)
         else response.sendStatus(404)
     })
