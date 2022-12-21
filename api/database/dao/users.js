@@ -23,14 +23,14 @@ const Usuario = sequelize.define(
         }
     },
     {
+        timestamps: false,
         indexes: [
             {
                 unique: true,
                 fields: ['email']
             }
         ]
-    },
-    { timestamps: false }
+    }
 );
 
 await Usuario.sync({ alter: true });
