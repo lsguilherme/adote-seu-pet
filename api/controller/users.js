@@ -57,21 +57,3 @@ export const login = (request, response) => {
     })
 }
 
-export const auth = (request, response) => {
-
-    const authHeader = request.headers.authorization;
-    const [, token] = authHeader.split(' ');
-
-    try {
-        const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
-        response.json({
-            erro: false,
-            message: 'Token válido!'
-        })
-    } catch (error) {
-        response.json({
-            erro: true,
-            message: 'Token expirado!'
-        })
-    }
-}
