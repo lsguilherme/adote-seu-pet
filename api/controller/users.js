@@ -49,10 +49,29 @@ export const login = (request, response) => {
             bcrypt.compare(request.body.senha, results.senha, function (err, result) {
                 if (result) {
                     var token = jwt.sign({ email: request.body.email }, process.env.PRIVATE_KEY, { expiresIn: 60 });
-                    response.json({ "token": `Bearer ${token}` })
+                    response.json({ "token": token })
                 } else response.sendStatus(400)
             })
         }
         else response.sendStatus(404)
     })
+}
+
+export const auth = (request, response) => {
+
+    const authHeader = request.headers.authorization;
+    const [, token] = authHeader.split(' ');
+
+    try {
+        const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+        response.json({
+            erro: false,
+            message: 'Token válido!'
+        })
+    } catch (error) {
+        response.json({
+            erro: true,
+            message: 'Token expirado!'
+        })
+    }
 }
