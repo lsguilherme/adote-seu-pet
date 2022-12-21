@@ -22,6 +22,14 @@ const Usuario = sequelize.define(
             allowNull: false
         }
     },
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['email']
+            }
+        ]
+    },
     { timestamps: false }
 );
 
