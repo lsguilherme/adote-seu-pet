@@ -50,7 +50,7 @@ export const login = (request, response) => {
                 if (result) {
                     var token = jwt.sign({ "id": results.dataValues.id }, process.env.PRIVATE_KEY, { expiresIn: 60 * 5 });
                     response.json({ "token": token })
-                } else response.sendStatus(400)
+                } else response.sendStatus(401)
             })
         }
         else response.sendStatus(404)
@@ -59,6 +59,15 @@ export const login = (request, response) => {
 
 export const updateEmail = (request, response) => {
     operations.update(request.params.id, { email: request.body.email }).then(results => {
+        if (results) response.sendStatus(200)
+        else response.sendStatus(404)
+    })
+}
+
+export const updateSenha = (request, response) => {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(request.body.senha, salt);
+    operations.update(request.params.id, { senha: hash }).then(results => {
         if (results) response.sendStatus(200)
         else response.sendStatus(404)
     })
