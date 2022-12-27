@@ -17,7 +17,14 @@ export const auth = (request, response, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
-        next();
+        if (request.params.id != decoded.id) {
+            response.status(401).json({
+                erro: true,
+                message: 'Usuário não autorizado!'
+            })
+        } else {
+            next();
+        }
     } catch (error) {
         response.json({
             erro: true,

@@ -48,7 +48,7 @@ export const login = (request, response) => {
         if (results) {
             bcrypt.compare(request.body.senha, results.senha, function (err, result) {
                 if (result) {
-                    var token = jwt.sign({ email: request.body.email }, process.env.PRIVATE_KEY, { expiresIn: 60 });
+                    var token = jwt.sign({ "id": results.dataValues.id }, process.env.PRIVATE_KEY, { expiresIn: 60 * 5 });
                     response.json({ "token": token })
                 } else response.sendStatus(400)
             })
