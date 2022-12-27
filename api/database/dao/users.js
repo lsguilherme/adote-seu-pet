@@ -40,10 +40,14 @@ export const operations = {
         return await Usuario.create({ "nome": user.nome, "email": user.email, "senha": user.senha });
     },
     findAllUsers: async function () {
-        return await Usuario.findAll();
+        return await Usuario.findAll({
+            attributes: ['id', 'nome']
+        });
     },
     findUser: async function (id) {
-        return await Usuario.findByPk(id);
+        return await Usuario.findByPk(id, {
+            attributes: ['id', 'nome']
+        });
     },
     update: async function (id, user) {
         const usuario = await Usuario.findByPk(id);
