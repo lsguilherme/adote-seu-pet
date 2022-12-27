@@ -57,3 +57,10 @@ export const login = (request, response) => {
     })
 }
 
+export const updateEmail = (request, response) => {
+    operations.update(request.params.id, { email: request.body.email }).then(results => {
+        if (results) response.sendStatus(200)
+        else response.sendStatus(404)
+    })
+}
+
