@@ -5,7 +5,7 @@
     "title": "Adote Seu Pet",
     "description": "API Node.js documentada com Swagger"
   },
-  "host": "localhost:5001",
+  "host": "localhost:5002",
   "basePath": "/",
   "schemes": [
     "http"
@@ -13,6 +13,9 @@
   "paths": {
     "/usuarios/{id}": {
       "delete": {
+        "tags": [
+          "Usuários"
+        ],
         "description": "",
         "parameters": [
           {
@@ -40,6 +43,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Usuários"
+        ],
         "description": "",
         "parameters": [
           {
@@ -79,6 +85,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Usuários"
+        ],
         "description": "",
         "parameters": [
           {
@@ -100,6 +109,9 @@
     },
     "/usuarios/email/{id}": {
       "put": {
+        "tags": [
+          "Usuários"
+        ],
         "description": "",
         "parameters": [
           {
@@ -141,6 +153,9 @@
     },
     "/usuarios/senha/{id}": {
       "put": {
+        "tags": [
+          "Usuários"
+        ],
         "description": "",
         "parameters": [
           {
@@ -182,6 +197,9 @@
     },
     "/usuarios/login": {
       "post": {
+        "tags": [
+          "Autenticação"
+        ],
         "description": "",
         "parameters": [
           {
@@ -215,6 +233,9 @@
     },
     "/usuarios/": {
       "post": {
+        "tags": [
+          "Usuários"
+        ],
         "description": "",
         "parameters": [
           {
@@ -246,6 +267,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Usuários"
+        ],
         "description": "",
         "parameters": [],
         "responses": {

@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const getUsers = (request, response) => {
+    // #swagger.tags = ['Usuários']
+
     operations.findAllUsers().then(results => {
         if (results.length > 0) response.send(results)
         else response.sendStatus(404)
@@ -12,6 +14,8 @@ export const getUsers = (request, response) => {
 }
 
 export const getUser = (request, response) => {
+    // #swagger.tags = ['Usuários']
+
     operations.findUser(request.params.id).then(results => {
         if (results) response.send(results)
         else response.sendStatus(404)
@@ -19,6 +23,8 @@ export const getUser = (request, response) => {
 }
 
 export const save = (request, response) => {
+    // #swagger.tags = ['Usuários']
+
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(request.body.senha, salt);
     operations.create({ nome: request.body.nome, email: request.body.email, senha: hash }).then(results => {
@@ -28,6 +34,8 @@ export const save = (request, response) => {
 }
 
 export const update = (request, response) => {
+    // #swagger.tags = ['Usuários']
+
     operations.update(request.params.id, { nome: request.body.nome }).then(results => {
         if (results) response.sendStatus(200)
         else response.sendStatus(404)
@@ -35,6 +43,8 @@ export const update = (request, response) => {
 }
 
 export const remove = (request, response) => {
+    // #swagger.tags = ['Usuários']
+
     operations.delete(request.params.id).then(results => {
         if (results) response.sendStatus(200)
         else response.sendStatus(404)
@@ -42,6 +52,8 @@ export const remove = (request, response) => {
 }
 
 export const login = (request, response) => {
+    // #swagger.tags = ['Autenticação']
+
     operations.findUserByEmail(request.body.email).then(results => {
         if (results) {
             bcrypt.compare(request.body.senha, results.senha, function (err, result) {
@@ -56,6 +68,8 @@ export const login = (request, response) => {
 }
 
 export const updateEmail = (request, response) => {
+    // #swagger.tags = ['Usuários']
+
     operations.update(request.params.id, { email: request.body.email }).then(results => {
         if (results) response.sendStatus(200)
         else response.sendStatus(404)
@@ -63,6 +77,8 @@ export const updateEmail = (request, response) => {
 }
 
 export const updateSenha = (request, response) => {
+    // #swagger.tags = ['Usuários']
+
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(request.body.senha, salt);
     operations.update(request.params.id, { senha: hash }).then(results => {
