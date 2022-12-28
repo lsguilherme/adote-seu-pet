@@ -23,7 +23,7 @@ export const save = (request, response) => {
     const hash = bcrypt.hashSync(request.body.senha, salt);
     operations.create({ nome: request.body.nome, email: request.body.email, senha: hash }).then(results => {
         if (results) response.send(results)
-        else response.sendStatus(404)
+        else response.sendStatus(400)
     })
 }
 
@@ -51,7 +51,7 @@ export const login = (request, response) => {
                 } else response.sendStatus(401)
             })
         }
-        else response.sendStatus(404)
+        else response.sendStatus(400)
     })
 }
 
