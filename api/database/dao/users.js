@@ -3,7 +3,9 @@ import { DataTypes } from 'sequelize';
 import bcrypt from "bcrypt";
 
 const Usuario = sequelize.define(
+    // nome da tabela
     'usuarios',
+    // Colunas da tabela:
     {
         id: {
             type: DataTypes.INTEGER,
