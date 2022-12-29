@@ -23,7 +23,6 @@ const Usuario = sequelize.define(
         }
     },
     {
-        timestamps: false,
         indexes: [
             {
                 unique: true,
@@ -41,12 +40,22 @@ export const operations = {
     },
     findAllUsers: async function () {
         return await Usuario.findAll({
-            attributes: ['id', 'nome']
+            attributes: [
+                'id',
+                'nome',
+                [sequelize.fn('date_format', sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [sequelize.fn('date_format', sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+            ]
         });
     },
     findUser: async function (id) {
         return await Usuario.findByPk(id, {
-            attributes: ['id', 'nome']
+            attributes: [
+                'id',
+                'nome',
+                [sequelize.fn('date_format', sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [sequelize.fn('date_format', sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+            ]
         });
     },
     update: async function (id, user) {
