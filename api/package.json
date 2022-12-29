@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "swagger-autogen": "nodemon swagger.js",
-    "dev": "node swagger.js && nodemon app.js"
+    "start": "npm run swagger-autogen && node app.js",
+    "dev": "npm run swagger-autogen && nodemon app.js",
+    "swagger-autogen": "node swagger.js"
   },
   "author": "",
   "license": "ISC",

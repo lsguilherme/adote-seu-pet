@@ -6,7 +6,7 @@ const doc = {
     info: {
         version: '1.0.0',
         title: 'Adote Seu Pet',
-        description: 'API Node.js documentada com Swagger',
+        description: `API Node.js documentada com Swagger\nhttp://localhost:${process.env.PORT}`,
     },
     host: `localhost:${process.env.PORT}`,
     basePath: '/',
