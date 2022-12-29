@@ -1,6 +1,5 @@
 import { sequelize } from "../config.js";
 import { DataTypes } from 'sequelize';
-import bcrypt from "bcrypt";
 
 const Usuario = sequelize.define(
     'usuarios',
@@ -23,30 +22,47 @@ const Usuario = sequelize.define(
             allowNull: false
         }
     },
-    { timestamps: false }
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['email']
+            }
+        ]
+    }
 );
 
 await Usuario.sync({ alter: true });
 
 export const operations = {
     create: async function (user) {
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(user.senha, salt);
-        return await Usuario.create({ "nome": user.nome, "email": user.email, "senha": hash });
+        return await Usuario.create({ "nome": user.nome, "email": user.email, "senha": user.senha });
     },
     findAllUsers: async function () {
-        return await Usuario.findAll();
+        return await Usuario.findAll({
+            attributes: [
+                'id',
+                'nome',
+                [sequelize.fn('date_format', sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [sequelize.fn('date_format', sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+            ]
+        });
     },
     findUser: async function (id) {
-        return await Usuario.findByPk(id);
+        return await Usuario.findByPk(id, {
+            attributes: [
+                'id',
+                'nome',
+                [sequelize.fn('date_format', sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [sequelize.fn('date_format', sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+            ]
+        });
     },
     update: async function (id, user) {
         const usuario = await Usuario.findByPk(id);
         if (usuario) {
-            const salt = bcrypt.genSaltSync(10);
-            const hash = bcrypt.hashSync(user.senha, salt);
             return await Usuario.update(
-                { "nome": user.nome, "email": user.email, "senha": hash },
+                { "nome": user.nome, "email": user.email, "senha": user.senha },
                 { where: { "id": id } }
             )
         } else {
@@ -57,5 +73,13 @@ export const operations = {
         return await Usuario.destroy({
             where: { id: id }
         });
+    },
+    findUserByEmail: async function (email) {
+        const usuario = await Usuario.findOne({ where: { email: email } });
+        if (usuario) {
+            return usuario
+        } else {
+            return false
+        }
     }
 }
