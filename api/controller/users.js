@@ -27,10 +27,19 @@ export const save = (request, response) => {
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(request.body.senha, salt);
-    operations.create({ nome: request.body.nome, email: request.body.email, senha: hash }).then(results => {
-        if (results) response.send(results)
-        else response.sendStatus(400)
-    })
+    operations.findUserByEmail(request.body.email).then(results => {
+        if (!results) {
+            operations.create({ nome: request.body.nome, email: request.body.email, senha: hash }).then(results => {
+                if (results) response.send(results)
+                else response.sendStatus(400)
+            })
+        } else {
+            response.status(409).json({
+                message: 'Usuário já cadastrado!'
+            })
+        }
+    });
+    
 }
 
 export const update = (request, response) => {
