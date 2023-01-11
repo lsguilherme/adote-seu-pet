@@ -1,4 +1,4 @@
-import { operations } from "../database/dao/pets";
+import { operations } from "../database/dao/pets.js";
 
 //List all pets
 export const getPets = (request, response) =>{
@@ -24,7 +24,7 @@ export const savePet = (request, response) => {
 }
 
 export const updatePet = (request, response) => {
-    operations.update(request.params.petId,request.body).then(results => {
+    operations.updatePet(request.params.id,request.body).then(results => {
         if(results) response.sendStatus(200)
         else response.sendStatus(404)
     })

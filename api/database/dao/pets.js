@@ -1,36 +1,36 @@
-import { sequelize } from "../config";
+import { sequelize } from "../config.js";
 import { DataTypes } from 'sequelize';
 
 const Pets = sequelize.define(
     'pets',
     {
-        petId:{
+        id:{
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
             //allowNull: false
         },
-        petName:{
+        name:{
             type: DataTypes.STRING(255),
             allowNull: false
         },
-        petAge:{
+        age:{
             type: DataTypes.STRING(255),
             allowNull: false
         },
-        petSex:{
+        sex:{
             type: DataTypes.STRING(1),
             allowNull: false
         },
-        petRace:{
+        race:{
             type: DataTypes.STRING(100),
             allowNull: false
         },
-        petLatitude:{
+        latitude:{
             type: DataTypes.DECIMAL(8,6),
             allowNull: false
         },
-        petLongitude:{
+        longitude:{
             type: DataTypes.DECIMAL(9,6),
             allowNull: false
         }
@@ -42,28 +42,29 @@ await Pets.sync({ alter: true});
 
 export const operations = {
     createPet: async function (pet){
-        return await Pets.create({"petName": pet.name, "petAge": pet.age, "petSex": pet.sex, "petRace": pet.race})
+        return await Pets.create({"name": pet.name, "age": pet.age, "sex": pet.sex, "race": pet.race, "latitude":pet.latitude, "longitude":pet.longitude})
     },
     findAllPets: async function(){
         return await Pets.findAll();
     },
-    findPet: async function(petId){
-        return await Pets.findByPk(petId);
+    findPet: async function(id){
+        return await Pets.findByPk(id);
     },
-    updatePet: async function(petId){
-        const Pets = await Pets.findByPk(petId);
-        if (Pets){
+    updatePet: async function(id, pet){
+        console.log(id, pet)
+        const petObject = await Pets.findByPk(id);
+        if (petObject && petObject.id){
             return await Pets.update(   
-                {"petName": pet.name, "petAge": pet.age, "petSex": pet.sex, "petRace": pet.race},
-                { where: { "petId": petId } }
+                {"name": pet.name, "age": pet.age, "sex": pet.sex, "race": pet.race},
+                { where: { "id": id } }
             )
         } else {
             return null
         }
     },
-    deletePet: async function(petId){
+    deletePet: async function(id){
         return await Pets.destroy({
-            where: { petId: petId}
+            where: { petId: id}
         })
     }
 }
