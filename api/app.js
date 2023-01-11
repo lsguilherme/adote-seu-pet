@@ -32,9 +32,9 @@ app.listen(PORT, console.log(`
 
 ----------------------------------------------------------
 
-    URL Base: http://localhost:${PORT}
+    URL Base: https://${process.env.URL_BASE}
 
-    Documentação Swagger: http://localhost:${PORT}/doc
+    Documentação Swagger: http://${process.env.URL_BASE}/doc
 
 ==========================================================
 `))
