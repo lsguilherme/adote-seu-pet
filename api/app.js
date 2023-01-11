@@ -17,4 +17,16 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 const PORT = process.env.PORT || 5011;
 
-app.listen(PORT, console.log(`Server iniciado: http://localhost:${PORT}`))
+app.listen(PORT, console.log(`
+==================================================
+
+              SERVIDOR INICIADO
+
+--------------------------------------------------
+
+    URL Base: http://localhost:${PORT}
+
+    Documentação: http://localhost:${PORT}/doc
+
+==================================================
+`))
