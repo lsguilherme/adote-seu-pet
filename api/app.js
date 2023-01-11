@@ -13,20 +13,28 @@ app.use(express.json())
 
 app.use(indexRoutes);
 
+app.get('/', (req, res) => {
+    res.send(`
+        <h1 style='display: flex; justify-content: center; font-family: sans-serif; margin-top: 5vh'>
+            Documentação Swagger: <a href="http://localhost:${PORT}/doc"> http://localhost:${PORT}/doc</a>
+        </h1>
+    `)
+});
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 
 const PORT = process.env.PORT || 5011;
 
 app.listen(PORT, console.log(`
-==================================================
+==========================================================
 
-              SERVIDOR INICIADO
+                  SERVIDOR INICIADO
 
---------------------------------------------------
+----------------------------------------------------------
 
     URL Base: http://localhost:${PORT}
 
-    Documentação: http://localhost:${PORT}/doc
+    Documentação Swagger: http://localhost:${PORT}/doc
 
-==================================================
+==========================================================
 `))
