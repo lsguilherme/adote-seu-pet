@@ -1,5 +1,6 @@
 import { sequelize } from "../config.js";
 import { DataTypes } from 'sequelize';
+import Usuario from "./users.js";
 
 const Pets = sequelize.define(
     'pets',
@@ -36,8 +37,17 @@ const Pets = sequelize.define(
         longitude: {
             type: DataTypes.STRING(20),
             allowNull: false
+        },
+        usuarioId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }
 );
+
+Pets.belongsTo(Usuario, {
+    foreignKey: "usuarioId",
+    as: 'usuario'
+});
 
 export default Pets;

@@ -1,8 +1,7 @@
 import Sequelize from "sequelize";
 import Usuario from "../models/users.js";
 
-
-await Usuario.sync({ alter: true });
+// await Usuario.sync({ alter: true });
 
 export const operations = {
     create: async function (user) {

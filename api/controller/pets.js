@@ -1,4 +1,7 @@
 import { operations } from "../database/dao/pets.js";
+import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config();
 
 //List all pets
 export const getPets = (request, response) => {
@@ -17,6 +20,10 @@ export const getPet = (request, response) => {
 }
 
 export const savePet = (request, response) => {
+    const [, token] = request.headers.authorization.split(' ');
+
+    const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+
     operations.createPet({
         "nome": request.body.nome,
         "idade": request.body.idade,
@@ -24,7 +31,8 @@ export const savePet = (request, response) => {
         "raca": request.body.raca,
         "imagem": request.body.imagem,
         "latitude": request.body.latitude,
-        "longitude": request.body.longitude
+        "longitude": request.body.longitude,
+        "usuarioId": decoded.id
     }).then(results => {
         if (results) response.send(results)
         else response.sendStatus(404)

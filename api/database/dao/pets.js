@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import Pets from "../models/pets.js";
 
-await Pets.sync({ alter: true });
+// await Pets.sync({ force: true });
 
 export const operations = {
     createPet: async function (pet) {
@@ -12,12 +12,15 @@ export const operations = {
             "raca": pet.raca,
             "imagem": pet.imagem,
             "latitude": pet.latitude,
-            "longitude": pet.longitude
+            "longitude": pet.longitude,
+            "usuarioId": pet.usuarioId
         })
     },
+
     findAllPets: async function () {
         return await Pets.findAll({
             attributes: [
+                "id",
                 "nome",
                 "idade",
                 "sexo",
@@ -25,6 +28,7 @@ export const operations = {
                 "imagem",
                 "latitude",
                 "longitude",
+                "usuarioId",
                 [Sequelize.fn('date_format', Sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
                 [Sequelize.fn('date_format', Sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
             ]
@@ -34,6 +38,7 @@ export const operations = {
     findPet: async function (id) {
         return await Pets.findByPk(id, {
             attributes: [
+                "id",
                 "nome",
                 "idade",
                 "sexo",
@@ -41,6 +46,7 @@ export const operations = {
                 "imagem",
                 "latitude",
                 "longitude",
+                "usuarioId",
                 [Sequelize.fn('date_format', Sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
                 [Sequelize.fn('date_format', Sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
             ]
