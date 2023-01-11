@@ -4,67 +4,107 @@ import { DataTypes } from 'sequelize';
 const Pets = sequelize.define(
     'pets',
     {
-        id:{
+        id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
-            //allowNull: false
         },
-        name:{
+        nome: {
             type: DataTypes.STRING(255),
             allowNull: false
         },
-        age:{
+        idade: {
             type: DataTypes.STRING(255),
             allowNull: false
         },
-        sex:{
-            type: DataTypes.STRING(1),
+        sexo: {
+            type: DataTypes.STRING(20),
             allowNull: false
         },
-        race:{
+        raca: {
             type: DataTypes.STRING(100),
             allowNull: false
         },
-        latitude:{
-            type: DataTypes.DECIMAL(8,6),
+        imagem: {
+            type: DataTypes.STRING(255),
             allowNull: false
         },
-        longitude:{
-            type: DataTypes.DECIMAL(9,6),
+        latitude: {
+            type: DataTypes.STRING(20),
+            allowNull: false
+        },
+        longitude: {
+            type: DataTypes.STRING(20),
             allowNull: false
         }
-    },
-    { timestamps: false }
+    }
 );
 
-await Pets.sync({ alter: true});
+await Pets.sync({ alter: true });
 
 export const operations = {
-    createPet: async function (pet){
-        return await Pets.create({"name": pet.name, "age": pet.age, "sex": pet.sex, "race": pet.race, "latitude":pet.latitude, "longitude":pet.longitude})
+    createPet: async function (pet) {
+        return await Pets.create({
+            "nome": pet.nome,
+            "idade": pet.idade,
+            "sexo": pet.sexo,
+            "raca": pet.raca,
+            "imagem": pet.imagem,
+            "latitude": pet.latitude,
+            "longitude": pet.longitude
+        })
     },
-    findAllPets: async function(){
-        return await Pets.findAll();
+    findAllPets: async function () {
+        return await Pets.findAll({
+            attributes: [
+                "nome",
+                "idade",
+                "sexo",
+                "raca",
+                "imagem",
+                "latitude",
+                "longitude",
+                [sequelize.fn('date_format', sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [sequelize.fn('date_format', sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+            ]
+        });
+
     },
-    findPet: async function(id){
-        return await Pets.findByPk(id);
+    findPet: async function (id) {
+        return await Pets.findByPk(id, {
+            attributes: [
+                "nome",
+                "idade",
+                "sexo",
+                "raca",
+                "imagem",
+                "latitude",
+                "longitude",
+                [sequelize.fn('date_format', sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [sequelize.fn('date_format', sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+            ]
+        });
     },
-    updatePet: async function(id, pet){
+    updatePet: async function (id, pet) {
         console.log(id, pet)
         const petObject = await Pets.findByPk(id);
-        if (petObject && petObject.id){
-            return await Pets.update(   
-                {"name": pet.name, "age": pet.age, "sex": pet.sex, "race": pet.race},
-                { where: { "id": id } }
-            )
+        if (petObject) {
+            return await Pets.update({
+                "nome": pet.nome,
+                "idade": pet.idade,
+                "sexo": pet.sexo,
+                "raca": pet.raca,
+                "imagem": pet.imagem
+            }, {
+                where: { "id": id }
+            })
         } else {
             return null
         }
     },
-    deletePet: async function(id){
+    deletePet: async function (id) {
         return await Pets.destroy({
-            where: { petId: id}
+            where: { "id": id }
         })
     }
 }
