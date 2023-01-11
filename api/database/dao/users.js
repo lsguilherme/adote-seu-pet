@@ -1,36 +1,6 @@
-import { sequelize } from "../config.js";
-import { DataTypes } from 'sequelize';
+import Sequelize from "sequelize";
+import Usuario from "../models/users.js";
 
-const Usuario = sequelize.define(
-    'usuarios',
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
-        nome: {
-            type: DataTypes.STRING(255),
-            allowNull: false
-        },
-        email: {
-            type: DataTypes.STRING(255),
-            allowNull: false
-        },
-        senha: {
-            type: DataTypes.STRING(255),
-            allowNull: false
-        }
-    },
-    {
-        indexes: [
-            {
-                unique: true,
-                fields: ['email']
-            }
-        ]
-    }
-);
 
 await Usuario.sync({ alter: true });
 
@@ -43,8 +13,8 @@ export const operations = {
             attributes: [
                 'id',
                 'nome',
-                [sequelize.fn('date_format', sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
-                [sequelize.fn('date_format', sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+                [Sequelize.fn('date_format', Sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [Sequelize.fn('date_format', Sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
             ]
         });
     },
@@ -53,8 +23,8 @@ export const operations = {
             attributes: [
                 'id',
                 'nome',
-                [sequelize.fn('date_format', sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
-                [sequelize.fn('date_format', sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+                [Sequelize.fn('date_format', Sequelize.col('createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [Sequelize.fn('date_format', Sequelize.col('updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
             ]
         });
     },
