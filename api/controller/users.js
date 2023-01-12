@@ -30,6 +30,32 @@ export const getUsers = (request, response) => {
     })
 }
 
+export const getUsersPets = (request, response) => {
+    /*
+
+    #swagger.tags = ['Usuários']
+    
+    #swagger.summary = 'Buscar todos os usuários e seus pets'
+    
+    #swagger.description = '
+        Rota para buscar todos os usuários e pets que eles tem.
+    '
+    
+    #swagger.responses[200] = {
+        description: 'Usuários obtidos com sucesso!'
+    }
+    #swagger.responses[404] = {
+        description: 'Nenhum usuário encontrado!'
+    }
+
+    */
+
+    operations.findAllUsersPets().then(results => {
+        if (results.length > 0) response.send(results)
+        else response.sendStatus(404)
+    })
+}
+
 export const getUser = (request, response) => {
     /* 
     
@@ -52,6 +78,33 @@ export const getUser = (request, response) => {
     */
 
     operations.findUser(request.params.id).then(results => {
+        if (results) response.send(results)
+        else response.sendStatus(404)
+    })
+}
+
+export const getUserPets = (request, response) => {
+    /* 
+    
+    #swagger.tags = ['Usuários']
+    
+    #swagger.summary = 'Buscar usuário por id e seus pets'
+    
+    #swagger.description = '
+        Rota para buscar o usuário por id e os pets que tem,
+        é necessário passar o id do usuário na ULR.
+    '
+    
+    #swagger.responses[200] = {
+        description: 'Usuário obtido com sucesso!'
+    }
+    #swagger.responses[404] = {
+        description: 'Usuário não encontrado!'
+    }
+
+    */
+
+    operations.findUserPets(request.params.id).then(results => {
         if (results) response.send(results)
         else response.sendStatus(404)
     })

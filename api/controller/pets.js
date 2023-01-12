@@ -11,9 +11,23 @@ export const getPets = (request, response) => {
     })
 }
 
+export const getPetsUser = (request, response) => {
+    operations.findAllPetsUser().then(results => {
+        if (results.length > 0) response.send(results)
+        else response.sendStatus(404)
+    })
+}
+
 //List one pet
 export const getPet = (request, response) => {
     operations.findPet(request.params.id).then(results => {
+        if (results) response.send(results)
+        else response.sendStatus(404)
+    })
+}
+
+export const getPetUser = (request, response) => {
+    operations.findPetUser(request.params.id).then(results => {
         if (results) response.send(results)
         else response.sendStatus(404)
     })

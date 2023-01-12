@@ -45,9 +45,9 @@ const Pets = sequelize.define(
     }
 );
 
+Usuario.hasMany(Pets);
 Pets.belongsTo(Usuario, {
-    foreignKey: "usuarioId",
-    as: 'usuario'
+    foreignKey: "usuarioId"
 });
 
 export default Pets;
