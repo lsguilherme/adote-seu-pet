@@ -19,8 +19,8 @@ export function Cadastro({ navigation }) {
   const [getSenha, setSenha] = useState();
 
   async function cadastrar() {
-    axios
-      .post(`http://localhost:5000/usuarios/`, {
+    await axios
+      .post(`${REMOTE_URL}/usuarios/`, {
         email: getEmail,
         senha: getSenha,
         nome: getNome,
@@ -29,8 +29,8 @@ export function Cadastro({ navigation }) {
         setEmail("");
         setSenha("");
         setNome("");
-        console.log(response.data);
         alert("Criado com sucesso!");
+        console.log(response.data);
       })
       .catch(function (error) {
         alert(error);

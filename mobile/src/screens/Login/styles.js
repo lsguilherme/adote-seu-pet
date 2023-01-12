@@ -5,21 +5,22 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
   },
   logo: {
-    marginTop: 60,
-    marginBottom: 65,
+    width: 300,
+    height: 120,
   },
   title: {
-    fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
     fontSize: THEME.FONT_SIZE.LG,
-    marginBottom: 47,
-    justifyContent: "center",
+    fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
+    color: THEME.COLORS.TEXT_GRAY,
+    marginVertical: 24,
   },
   input: {
     borderRadius: 16,
     width: 340,
-    height: 64,
+    height: 48,
     paddingLeft: 15,
     backgroundColor: THEME.COLORS.BACKGROUND,
   },
@@ -33,7 +34,7 @@ export const styles = StyleSheet.create({
 
   botaoContainer: {
     width: 340,
-    height: 60,
+    height: 48,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 16,

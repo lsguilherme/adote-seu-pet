@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Image,
   KeyboardAvoidingView,
-  SafeAreaView,
-  ScrollView,
   Text,
   TextInput,
   TouchableHighlight,
@@ -13,9 +11,28 @@ import {
 import { THEME } from "../../theme";
 
 import { styles } from "./styles";
-import { URL } from "../../utils/url";
+import { REMOTE_URL } from "../../utils/url";
+import axios from "axios";
 
-export function Login({ route, navigation }) {
+export function Login({ navigation }) {
+  const [getEmail, setEmail] = useState();
+  const [getSenha, setSenha] = useState();
+
+  async function login() {
+    await axios
+      .post(`${REMOTE_URL}/usuarios/login`, {
+        email: getEmail,
+        senha: getSenha,
+      })
+      .then(function (response) {
+        setEmail("");
+        setSenha("");
+        navigation.navigate("Home");
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+  }
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={{ alignItems: "center", backgroundColor: "#F3F3F3" }}>
@@ -32,12 +49,21 @@ export function Login({ route, navigation }) {
 
         <View>
           <Text style={styles.label}>E-mail</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            value={getEmail}
+            onChangeText={(value) => setEmail(value)}
+          />
         </View>
 
         <View>
           <Text style={[styles.label, { marginTop: 25 }]}>Senha</Text>
-          <TextInput style={styles.input} secureTextEntry={true} />
+          <TextInput
+            style={styles.input}
+            secureTextEntry={true}
+            value={getSenha}
+            onChangeText={(value) => setSenha(value)}
+          />
         </View>
 
         <TouchableHighlight
@@ -45,7 +71,7 @@ export function Login({ route, navigation }) {
             styles.botaoContainer,
             { backgroundColor: THEME.COLORS.PRIMARY, marginTop: 35 },
           ]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => login()}
           underlayColor={THEME.COLORS.PRIMARY}
         >
           <Text style={styles.name}>ENTRAR</Text>
