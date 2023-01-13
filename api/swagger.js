@@ -6,11 +6,11 @@ const doc = {
     info: {
         version: '1.0.0',
         title: 'Adote Seu Pet',
-        description: `API Node.js documentada com Swagger\nhttps://${process.env.URL_BASE}`,
+        description: `API Node.js documentada com Swagger\n${process.env.HTTP}://${process.env.URL_BASE}`,
     },
     host: `${process.env.URL_BASE}`,
     basePath: '/',
-    schemes: ['https'],
+    schemes: [`${process.env.HTTP}`],
 };
 
 const outputFile = './swagger-output.json';

@@ -16,7 +16,7 @@ app.use(indexRoutes);
 app.get('/', (req, res) => {
     res.send(`
         <h1 style='display: flex; justify-content: center; font-family: sans-serif; margin-top: 5vh'>
-            Documentação Swagger: <a href="https://${process.env.URL_BASE}/doc"> https://${process.env.URL_BASE}/doc</a>
+            Documentação Swagger: <a href="${process.env.HTTP}://${process.env.URL_BASE}/doc"> ${process.env.HTTP}://${process.env.URL_BASE}/doc</a>
         </h1>
     `)
 });
@@ -25,16 +25,20 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 const PORT = process.env.PORT || 5011;
 
+const LINK_URL = `URL Base: ${process.env.HTTP}://${process.env.URL_BASE}`
+const LINK_DOC = `Documentação Swagger: ${process.env.HTTP}://${process.env.URL_BASE}/doc`
+const LINHA = '='.repeat(LINK_DOC.length + 8)
+const LINHA_FINA = '-'.repeat(LINK_DOC.length + 8)
 app.listen(PORT, console.log(`
-====================================================================
+${LINHA}
 
     SERVIDOR INICIADO
 
---------------------------------------------------------------------
+${LINHA_FINA}
 
-    URL Base: https://${process.env.URL_BASE}
+    ${LINK_URL}
 
-    Documentação Swagger: https://${process.env.URL_BASE}/doc
+    ${LINK_DOC}
 
-====================================================================
+${LINHA}
 `))

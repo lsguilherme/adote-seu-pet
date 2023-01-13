@@ -2,6 +2,7 @@ import Sequelize from "sequelize";
 import Pets from "../models/pets.js";
 import Usuario from "../models/users.js";
 
+// Sincronizar somente no ambiente de desenvolvimento
 // await Pets.sync({ force: true });
 
 export const operations = {
