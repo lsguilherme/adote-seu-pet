@@ -10,16 +10,23 @@ ___
 
 #### Stack de Desenvolvimento
 <img src="https://bognarjunior.files.wordpress.com/2018/03/if_react-js_logo_1174949.png" alt="React Native Icon" height="14"/> React Native
+
 <img src="https://static-00.iconduck.com/assets.00/expo-icon-512x462-3a87htea.png" alt="Expo Icon" height="14"/> Expo
+
 <img src="https://cdn.iconscout.com/icon/free/png-256/node-js-1174925.png" alt="Node.js Icon" height="14"/> Node.js
+
 <img src="https://cdn.iconscout.com/icon/free/png-256/postgresql-10-1175121.png" alt="PostgreSQL Icon" height="14"/> PostgreSQL
+
 <img src="https://railway.app/brand/logo-light.png" alt="Railway Icon" height="16"/> Railway
 
 #### Ferramentas
 
 <img src="https://code.visualstudio.com/assets/apple-touch-icon.png" alt="Visual Studio COde Icon" height="14"/> Visual Studio Code
+
 <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.png" alt="Postman Icon" height="14"/> Postman
+
 <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt="Git Icon" height="14"/> Git
+
 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="drawing" height="14"/> GitHub
 
 ___
