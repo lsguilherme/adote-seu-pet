@@ -1,10 +1,10 @@
-import { StyleSheet, StatusBar } from 'react-native';
-import { THEME } from '../../theme';
+import { StyleSheet, StatusBar } from "react-native";
+import { THEME } from "../../theme";
 
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight
+    paddingTop: StatusBar.currentHeight,
   },
 
   selectLocal: {
@@ -14,15 +14,15 @@ export const styles = StyleSheet.create({
     marginLeft: 25,
     backgroundColor: THEME.COLORS.BACKGROUND,
     paddingHorizontal: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     borderRadius: 16,
 
     texto: {
       fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
       fontSize: THEME.FONT_SIZE.SM,
-      color: THEME.COLORS.TEXT_GRAY
+      color: THEME.COLORS.TEXT_GRAY,
     },
 
     pesquisa: {
@@ -34,9 +34,9 @@ export const styles = StyleSheet.create({
       marginLeft: 8,
       borderRadius: 16,
       backgroundColor: THEME.COLORS.BACKGROUND,
-      alignItems: 'center',
-      justifyContent: 'center'
-    }
+      alignItems: "center",
+      justifyContent: "center",
+    },
   },
 
   modal: {
@@ -45,34 +45,34 @@ export const styles = StyleSheet.create({
       with: 275,
       marginTop: 74,
       marginLeft: 25,
-      backgroundColor: '#FFFFFF',
-      borderRadius: 16
+      backgroundColor: "#FFFFFF",
+      borderRadius: 16,
     },
 
     item: {
       padding: 12,
-      borderBottomColor: 'rgba(79, 79, 79, 0.2)',
+      borderBottomColor: "rgba(79, 79, 79, 0.2)",
       borderBottomWidth: 1,
     },
 
     last: {
-      borderBottomWidth: 0
-    }
+      borderBottomWidth: 0,
+    },
   },
 
   banner: {
-    flexDirection: 'row',
+    flexDirection: "row",
     width: 340,
     height: 127,
     marginHorizontal: 25,
     marginVertical: 30,
     borderRadius: 16,
-    backgroundColor: '#FFF186',
-    alignItems: 'center',
+    backgroundColor: "#FFF186",
+    alignItems: "center",
   },
 
   bannerImage: {
-    height: 127
+    height: 127,
   },
 
   petMenu: {
@@ -81,72 +81,72 @@ export const styles = StyleSheet.create({
       fontSize: THEME.FONT_SIZE.SM,
       color: THEME.COLORS.TEXT_BLACK,
       marginLeft: 25,
-      marginBottom: 14
+      marginBottom: 14,
     },
     scroll: {
-      width: '100%',
+      width: "100%",
       maxHeight: 82,
     },
     item: {
-      alignItems: 'center',
-      marginHorizontal: 8
+      alignItems: "center",
+      marginHorizontal: 8,
     },
     itemFirst: {
-      alignItems: 'center',
+      alignItems: "center",
       marginLeft: 25,
-      marginRight: 8
+      marginRight: 8,
     },
     itemLast: {
-      alignItems: 'center',
+      alignItems: "center",
       marginLeft: 8,
-      marginRight: 25
+      marginRight: 25,
     },
     icon: {
       backgroundColor: THEME.COLORS.SECONDARY,
       width: 64,
       height: 64,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 32
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 32,
     },
     iconPlus: {
       backgroundColor: THEME.COLORS.PRIMARY,
       width: 64,
       height: 64,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 32
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 32,
     },
     texto: {
       fontFamily: THEME.FONT_FAMILY.REGULAR,
       fontSize: THEME.FONT_SIZE.SM,
-      color: THEME.COLORS.TEXT_BLACK
-    }
+      color: THEME.COLORS.TEXT_BLACK,
+    },
   },
 
   pets: {
     labels: {
       marginHorizontal: 25,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'baseline',
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "baseline",
       marginTop: 30,
-      marginBottom: 14
+      marginBottom: 14,
     },
     label: {
       fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
       fontSize: THEME.FONT_SIZE.SM,
-      color: THEME.COLORS.TEXT_BLACK
+      color: THEME.COLORS.TEXT_BLACK,
     },
     link: {
       fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
       fontSize: THEME.FONT_SIZE.SM,
-      color: THEME.COLORS.TEXT_GRAY
-    }
+      color: THEME.COLORS.TEXT_GRAY,
+    },
   },
 
   scrollPets: {
-    width: '100%'
+    width: "100%",
   },
 
   card: {
@@ -156,17 +156,17 @@ export const styles = StyleSheet.create({
       marginHorizontal: 8,
       borderRadius: 16,
       borderColor: THEME.COLORS.CARD_SHADOW,
-      backgroundColor: 'white'
+      backgroundColor: "white",
     },
 
     first: {
       marginLeft: 25,
-      marginRight: 8
+      marginRight: 8,
     },
 
     last: {
       marginLeft: 8,
-      marginRight: 25
+      marginRight: 25,
     },
 
     nome: {
@@ -174,15 +174,15 @@ export const styles = StyleSheet.create({
       fontSize: THEME.FONT_SIZE.SM,
       color: THEME.COLORS.TEXT_GRAY,
       marginLeft: 8,
-      marginTop: 8
+      marginTop: 8,
     },
 
     conteudo: {
       box: {
-        flexDirection: 'row',
+        flexDirection: "row",
         marginLeft: 8,
         marginRight: 12,
-        marginBottom: 10
+        marginBottom: 10,
       },
 
       local: {
@@ -191,9 +191,8 @@ export const styles = StyleSheet.create({
         height: 38,
         fontFamily: THEME.FONT_FAMILY.REGULAR,
         fontSize: THEME.FONT_SIZE.SM,
-        color: THEME.COLORS.TEXT_GRAY
-      }
-
-    }
-  }
+        color: THEME.COLORS.TEXT_GRAY,
+      },
+    },
+  },
 });

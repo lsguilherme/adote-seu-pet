@@ -18,6 +18,7 @@ import { PetsAnunciados } from "./src/screens/PetsAnunciados";
 import { ExcluirContaModal } from "./src/screens/Perfil/ExcluirContaModal";
 import { SairDaContaModal } from "./src/screens/Perfil/SairDaContaModal";
 import { Cadastro } from "./src/screens/Cadastro";
+import { InfoPet } from "./src/screens/InfoPet";
 
 import {
   useFonts,
@@ -67,6 +68,7 @@ export default function App() {
             name="EditarInformacoesPet"
             component={EditarInformacoesPet}
           />
+          <Screen name="InfoPet" component={InfoPet} />
           <Screen name="PetsAnunciados" component={PetsAnunciados} />
           <Screen name="ExcluirContaModal" component={ExcluirContaModal} />
           <Screen name="SairDaContaModal" component={SairDaContaModal} />
