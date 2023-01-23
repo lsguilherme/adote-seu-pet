@@ -24,10 +24,10 @@ export function Cadastro({ navigation }) {
   const [getCodigo, setCodigo] = useState();
 
   async function validarCodigo() {
-    await axios.post(`http://192.168.0.112:5001/totp/`, {
+    await axios.post(`${REMOTE_URL}/totp/`, {
       email: getEmail
     }).then(response => {
-      axios.post(`http://192.168.0.112:5001/email/validar`, {
+      axios.post(`${REMOTE_URL}/email/validar`, {
         email: getEmail,
         nome: getNome,
         totp: response.data.totp
@@ -44,7 +44,7 @@ export function Cadastro({ navigation }) {
   }
 
   async function cadastrar() {
-    await axios.post(`http://192.168.0.112:5001/totp/validar`, {
+    await axios.post(`${REMOTE_URL}/totp/validar`, {
       email: getEmail,
       totp: getCodigo
     }).then(response => {
