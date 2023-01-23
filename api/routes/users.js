@@ -1,10 +1,9 @@
 import express from 'express'
 const router = express.Router();
 
-import { getUser, getUserPets, getUsers, getUsersPets, login, remove, save, update, updateEmail, updateSenha } from "../controller/users.js";
+import { getUser, getUserPets, getUsers, getUsersPets, remove, save, update, updateEmail, updateSenha } from "../controller/users.js";
 import { auth } from './middlewares/auth.js';
 
-router.post('/login', login);
 router.delete('/:id', auth, remove);
 router.put('/:id', auth, update);
 router.put('/email/:id', auth, updateEmail);
