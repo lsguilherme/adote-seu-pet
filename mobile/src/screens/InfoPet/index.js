@@ -40,8 +40,8 @@ export function InfoPet({ navigation, route }) {
         backgroundColor="#F3F3F3"
       />
 
-      {info.map((item) => (
-        <View>
+      {info.map((item, i) => (
+        <View key={i}>
           <Image
             source={{ uri: item.imagem }}
             style={{ width: 400, height: 300 }}
