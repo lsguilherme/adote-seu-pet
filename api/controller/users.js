@@ -1,6 +1,5 @@
 import { operations } from "../database/dao/users.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -206,47 +205,6 @@ export const remove = (request, response) => {
 
     operations.delete(request.params.id).then(results => {
         if (results) response.sendStatus(200)
-        else response.sendStatus(404)
-    })
-}
-
-export const login = (request, response) => {
-
-    /* 
-    
-    #swagger.tags = ['Autenticação']
-    
-    #swagger.summary = 'Login do usuário'
-    
-    #swagger.description = '
-        Rota para realizar o login do usuário,
-        é necessário passar o email e a nova senha no body. O retorno é um json web token.
-    '
-
-    #swagger.responses[200] = {
-        description: 'Usuário autenticado com sucesso!'
-    }
-    #swagger.responses[400] = {
-        description: 'Erro na requisição!'
-    }
-    #swagger.responses[401] = {
-        description: 'Usuário não autorizado!'
-    }
-    #swagger.responses[404] = {
-        description: 'Usuário não emcontrado!'
-    }
-    
-    */
-
-    operations.findUserByEmail(request.body.email).then(results => {
-        if (results) {
-            bcrypt.compare(request.body.senha, results.senha, function (err, result) {
-                if (result) {
-                    var token = jwt.sign({ "id": results.dataValues.id }, process.env.PRIVATE_KEY, { expiresIn: 60 * 5 });
-                    response.json({ "token": token })
-                } else response.sendStatus(401)
-            })
-        }
         else response.sendStatus(404)
     })
 }
