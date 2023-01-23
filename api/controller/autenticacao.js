@@ -31,7 +31,7 @@ export const login = (request, response) => {
         if (results) {
             bcrypt.compare(request.body.senha, results.senha, function (err, result) {
                 if (result) {
-                    var token = jwt.sign({ "id": results.dataValues.id }, process.env.PRIVATE_KEY, { expiresIn: 60 * 5 });
+                    var token = jwt.sign({ "id": results.dataValues.id }, process.env.PRIVATE_KEY, { expiresIn: '1d' });
                     response.json({ "token": token })
                 } else response.sendStatus(401)
             })
@@ -52,20 +52,14 @@ export const gerarTOTP = (request, response) => {
     }
     */
 
-    operations.findUserByEmail(request.body.email).then(results => {
-        if (results) {
-            let totp = new OTPAuth.TOTP({
-                algorithm: "SHA256",
-                digits: 6,
-                period: 60,
-                secret: OTPAuth.Secret.fromUTF8(request.body.email + process.env.PRIVATE_KEY)
-            })
-
-            response.json({ "totp": totp.generate() })
-        } else {
-            response.status(404).json({ "message": "Usuário não encontrado!" })
-        }
+    let totp = new OTPAuth.TOTP({
+        algorithm: "SHA256",
+        digits: 6,
+        period: 60,
+        secret: OTPAuth.Secret.fromUTF8(request.body.email + process.env.PRIVATE_KEY)
     })
+
+    response.json({ "totp": totp.generate() })
 }
 
 export const validarTOTP = (request, response) => {
@@ -83,29 +77,24 @@ export const validarTOTP = (request, response) => {
     }
     */
 
-    operations.findUserByEmail(request.body.email).then(results => {
-        if (results) {
-            let totp = new OTPAuth.TOTP({
-                algorithm: "SHA256",
-                digits: 6,
-                period: 60,
-                secret: OTPAuth.Secret.fromUTF8(request.body.email + process.env.PRIVATE_KEY)
-            })
-
-            let delta = totp.validate({
-                token: request.body.totp,
-                window: 1
-            })
-
-            if (delta == 0) {
-                response.json({ "totp": "VALIDO" })
-            } else if (delta < 0) {
-                response.status(403).json({ "totp": "EXPIRADO" })
-            } else {
-                response.status(401).json({ "totp": "INVALIDO" })
-            }
-        } else {
-            response.status(404).json({ "message": "Usuário não encontrado!" })
-        }
+    let totp = new OTPAuth.TOTP({
+        algorithm: "SHA256",
+        digits: 6,
+        period: 60,
+        secret: OTPAuth.Secret.fromUTF8(request.body.email + process.env.PRIVATE_KEY)
     })
+
+    let delta = totp.validate({
+        token: request.body.totp,
+        window: 1
+    })
+
+    if (delta == 0) {
+        response.json({ "totp": "VALIDO" })
+    } else if (delta < 0) {
+        response.json({ "totp": "EXPIRADO" })
+    } else {
+        response.json({ "totp": "INVALIDO" })
+    }
+
 }
