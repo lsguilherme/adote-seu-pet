@@ -20,7 +20,7 @@ export function Login({ navigation }) {
 
   async function login() {
     await axios
-      .post(`${REMOTE_URL}/usuarios/login`, {
+      .post(`${REMOTE_URL}/login`, {
         email: getEmail,
         senha: getSenha,
       })
