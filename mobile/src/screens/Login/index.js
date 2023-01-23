@@ -15,8 +15,8 @@ import { REMOTE_URL } from "../../utils/url";
 import axios from "axios";
 
 export function Login({ navigation }) {
-  const [getEmail, setEmail] = useState();
-  const [getSenha, setSenha] = useState();
+  const [getEmail, setEmail] = useState("guilherme@email");
+  const [getSenha, setSenha] = useState("123");
 
   async function login() {
     await axios
@@ -27,7 +27,8 @@ export function Login({ navigation }) {
       .then(function (response) {
         setEmail("");
         setSenha("");
-        navigation.navigate("Home");
+
+        navigation.navigate("Home", { token: response.data.token });
       })
       .catch(function (error) {
         alert(error);
