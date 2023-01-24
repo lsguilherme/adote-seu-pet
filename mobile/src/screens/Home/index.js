@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { Footer } from "../../components/Footer";
 import { ActionMaisModal } from "./ActionMaisModal";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
 
 // import { THEME } from '../../theme';
 
@@ -23,15 +23,19 @@ import { REMOTE_URL } from "../../utils/url";
 
 export function Home({ route, navigation }) {
   const [getToken, setToken] = useState();
+  const [getUserId, setUserId] = useState();
   const [maisModal, setMaisModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectValue, setSelectValue] = useState("Localização");
   const [getData, setData] = useState([]);
 
+  const refresh = useIsFocused();
   useEffect(() => {
     if (route.params) {
       const { token } = route.params;
+      const { userId } = route.params;
       setToken(token);
+      setUserId(userId);
     }
 
     async function resgatarDados() {
@@ -46,7 +50,7 @@ export function Home({ route, navigation }) {
       setData(result.data);
     }
     resgatarDados();
-  }, []);
+  }, [refresh]);
 
   return (
     <>
@@ -183,7 +187,7 @@ export function Home({ route, navigation }) {
           <Text
             style={styles.pets.link}
             onPress={() => {
-              navigation.navigate("TodosOsPets", { token: getToken });
+              navigation.navigate("TodosOsPets", { userId: getUserId, token: getToken });
             }}
           >
             Ver todos
@@ -202,7 +206,7 @@ export function Home({ route, navigation }) {
             >
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("InfoPet", { 'petInfo': item })
+                  navigation.navigate("InfoPet", { 'petInfo': item, userId: getUserId, token: getToken })
                 }}
               >
                 <Image

@@ -28,7 +28,7 @@ export function Login({ navigation }) {
         setEmail("");
         setSenha("");
 
-        navigation.navigate("Home", { token: response.data.token });
+        navigation.navigate("Home", { userId: response.data.usuarioId, token: response.data.token });
       })
       .catch(function (error) {
         alert(error);

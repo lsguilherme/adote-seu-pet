@@ -10,6 +10,7 @@ import {
 import { Header } from "react-native-elements";
 import { styles } from "./styles";
 import { SearchBar } from "react-native-elements";
+import { useIsFocused } from "@react-navigation/native";
 
 import { Footer } from "../../components/Footer";
 import { useState } from "react";
@@ -20,12 +21,13 @@ export function TodosOsPets({ route, navigation }) {
   const [search, onChangeSearch] = useState("");
   const [getData, setData] = useState([]);
   const [getToken, setToken] = useState();
+  const [getUserId, setUserId] = useState();
 
   function PetCard({ item }) {
     return (
       <View style={styles.card.first} overflow="hidden">
         <TouchableOpacity
-          onPress={() => navigation.navigate("InfoPet", { "petInfo": item })}
+          onPress={() => navigation.navigate("InfoPet", { 'petInfo': item, userId: getUserId, token: getToken })}
         >
           <Image
             source={{ uri: item.imagem }}
@@ -49,10 +51,13 @@ export function TodosOsPets({ route, navigation }) {
     );
   }
 
+  const refresh = useIsFocused();
   useEffect(() => {
     if (route.params) {
       const { token } = route.params;
       setToken(token);
+      const { userId } = route.params;
+      setUserId(userId);
     }
 
     async function resgatarDados() {
@@ -67,7 +72,7 @@ export function TodosOsPets({ route, navigation }) {
       setData(result.data);
     }
     resgatarDados();
-  }, []);
+  }, [refresh]);
 
   return (
     <View style={styles.container}>

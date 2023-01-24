@@ -2,18 +2,45 @@ import React, { useState, useEffect } from "react";
 import { TouchableOpacity, Image, View, Text } from "react-native";
 import { Avatar, Button, Header, Icon } from "react-native-elements";
 import { THEME } from "../../theme";
+import { useIsFocused } from "@react-navigation/native";
 
 import { styles } from "./styles";
+import { REMOTE_URL } from "../../utils/url";
+import axios from "axios";
 
 export function InfoPet({ route, navigation }) {
+  const [getUserID, setUserID] = useState(route.params.userId);
+  const [getToken, setToken] = useState(route.params.token);
   const [info, setInfo] = useState(route.params.petInfo);
+  const [getFavorito, setFavorito] = useState(false);
 
+  async function favoritar(id) {
+    await axios.post(`${REMOTE_URL}/pets/favorito/${id}`, {}, {
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc0NTkzMTA4LCJleHAiOjE2NzQ2Nzk1MDh9.EeV659YTetR8uW3ybgfckDc0gJL5qpKO-PItKGh9y3k`,
+      }
+    }).then(
+      navigation.navigate("Home")
+    )
+  }
+
+  const refresh = useIsFocused();
   useEffect(() => {
     if (route.params) {
-      const { petInfo } = route.params;
-      setInfo(petInfo)
+      const { userId } = route.params;
+      const { token } = route.params;
+      setUserID(userId);
+      setToken(token)
     }
-  });
+
+    let usuarios = []
+    info.petsFavoritos.forEach(element => {
+      usuarios.push(element.usuarioId)
+    });
+
+    if (usuarios.includes(getUserID)) setFavorito(true)
+    else setFavorito(false)
+  }, [refresh]);
 
   return (
     <View style={styles.container}>
@@ -66,7 +93,9 @@ export function InfoPet({ route, navigation }) {
             </Text>
           </View>
           <View style={{ justifyContent: "center" }}>
-            <Icon name="heart" type="font-awesome" color="black" size={36} />
+            <TouchableOpacity onPress={() => favoritar(info.id)}>
+              <Icon name="heart" type="font-awesome" color={getFavorito ? "red" : "lightgray"} size={36} />
+            </TouchableOpacity>
           </View>
         </View>
 
