@@ -10,13 +10,11 @@ import { styles } from './styles';
 import { SairDaContaModal } from "./SairDaContaModal";
 import { ExcluirContaModal } from "./ExcluirContaModal";
 
-export function Perfil() {
+export function Perfil({ navigation }) {
 
   const [visibleModal, setVisibleModal] = useState(false);
 
   const [excluirContaModall, setExcluirContaModall] = useState(false);
-
-  const navigation = useNavigation();
 
   return (
     <>
@@ -39,10 +37,12 @@ export function Perfil() {
                 <Text style={styles.texto}>Seus pets anunciados</Text>
               </View>
 
-              <View onPress={{}} style={styles.bloco}>
-                <Image source={require('../../assets/iconFavoritos.png')} />
-                <Text style={styles.texto}>Pets favoritados</Text>
-              </View>
+              <TouchableOpacity onPress={() => navigation.navigate("Favoritos")}>
+                <View onPress={{}} style={styles.bloco}>
+                  <Image source={require('../../assets/iconFavoritos.png')} />
+                  <Text style={styles.texto}>Pets favoritados</Text>
+                </View>
+              </TouchableOpacity>
 
               <TouchableOpacity onPress={() => setExcluirContaModall(true)}>
                 <View style={styles.bloco}>
