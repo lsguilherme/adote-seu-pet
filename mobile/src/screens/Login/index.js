@@ -15,7 +15,7 @@ import { REMOTE_URL } from "../../utils/url";
 import axios from "axios";
 
 export function Login({ navigation }) {
-  const [getEmail, setEmail] = useState("guilherme@email");
+  const [getEmail, setEmail] = useState("mcm1@discente.ifpe.edu.br");
   const [getSenha, setSenha] = useState("123");
 
   async function login() {
