@@ -16,7 +16,7 @@ export const auth = (request, response, next) => {
     const [, token] = authHeader.split(' ');
 
     try {
-        const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+        jwt.verify(token, process.env.PRIVATE_KEY);
         next();
     } catch (error) {
         response.json({

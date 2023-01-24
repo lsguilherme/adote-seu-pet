@@ -74,3 +74,35 @@ export const removePet = (request, response) => {
         else response.sendStatus(404)
     })
 }
+
+export const favoritarPet = (request, response) => {
+    /* 
+    #swagger.tags = ['Pets']
+    #swagger.summary = 'Favoritar pet'
+    #swagger.description = 'Rota para favoritar o pet, é necessário passar o id no pet na URL.'
+    #swagger.parameters['id'] = { in: 'path', required: true, type: 'integer' }
+    #swagger.responses[200] = { description: 'Pet favoritado com sucesso!' }
+    */
+
+    const [, token] = request.headers.authorization.split(' ');
+
+    const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+
+    operations.findPetFavorito(request.params.id, decoded.id).then(results => {
+        if (results) {
+            operations.deletePetFavorito(request.params.id, decoded.id).then(results => {
+                if (results) response.sendStatus(200)
+                else response.sendStatus(404)
+            })
+        } else {
+            operations.favoritarPet({
+                "petId": Number(request.params.id),
+                "usuarioId": decoded.id
+            }).then(results => {
+                if (results) response.send(results)
+                else response.sendStatus(404)
+            })
+        }
+    })
+
+}
