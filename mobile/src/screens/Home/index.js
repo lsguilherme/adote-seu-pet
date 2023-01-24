@@ -19,11 +19,11 @@ import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
 import axios from "axios";
+import { REMOTE_URL } from "../../utils/url";
 
-export function Home({ route }) {
+export function Home({ route, navigation }) {
   const [getToken, setToken] = useState();
   const [maisModal, setMaisModal] = useState(false);
-  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [selectValue, setSelectValue] = useState("Localização");
   const [getData, setData] = useState([]);
@@ -36,7 +36,7 @@ export function Home({ route }) {
 
     async function resgatarDados() {
       const result = await axios(
-        `https://adoteseupet.up.railway.app/pets/user`,
+        `${REMOTE_URL}/pets/user`,
         {
           headers: {
             Authorization: `Beare ${getToken}`,
@@ -201,7 +201,9 @@ export function Home({ route }) {
               overflow="hidden"
             >
               <TouchableOpacity
-                onPress={() => navigation.navigate("InfoPet", { getData })}
+                onPress={() => {
+                  navigation.navigate("InfoPet", { 'petInfo': item })
+                }}
               >
                 <Image
                   source={{ uri: item.imagem }}

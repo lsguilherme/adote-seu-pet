@@ -14,6 +14,7 @@ import { SearchBar } from "react-native-elements";
 import { Footer } from "../../components/Footer";
 import { useState } from "react";
 import axios from "axios";
+import { REMOTE_URL } from "../../utils/url";
 
 export function TodosOsPets({ route, navigation }) {
   const [search, onChangeSearch] = useState("");
@@ -24,7 +25,7 @@ export function TodosOsPets({ route, navigation }) {
     return (
       <View style={styles.card.first} overflow="hidden">
         <TouchableOpacity
-          onPress={() => navigation.navigate("InfoPet", { getData })}
+          onPress={() => navigation.navigate("InfoPet", { "petInfo": item })}
         >
           <Image
             source={{ uri: item.imagem }}
@@ -56,7 +57,7 @@ export function TodosOsPets({ route, navigation }) {
 
     async function resgatarDados() {
       const result = await axios(
-        `https://adoteseupet.up.railway.app/pets/user`,
+        `${REMOTE_URL}/pets/user`,
         {
           headers: {
             Authorization: `Beare ${getToken}`,
@@ -67,12 +68,19 @@ export function TodosOsPets({ route, navigation }) {
     }
     resgatarDados();
   }, []);
-  console.log(getData);
 
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.screen}>
         <SearchBar
+          containerStyle={{
+            backgroundColor: 'transparent', borderBottomColor: 'transparent', borderTopColor: 'transparent',
+            paddingHorizontal: 25
+          }}
+          inputContainerStyle={{
+            backgroundColor: 'white', borderWidth: 1, borderBottomWidth: 1,
+            borderColor: 'rgba(139, 139, 139, 0.35)', borderRadius: 16
+          }}
           placeholder="Pesquise um pet"
           onChangeText={onChangeSearch}
           value={search}
@@ -80,6 +88,7 @@ export function TodosOsPets({ route, navigation }) {
         />
         <View>
           <Header
+            statusBarProps={{ backgroundColor: 'transparent' }}
             leftComponent={{
               icon: "arrow-left",
               color: "#fff",
