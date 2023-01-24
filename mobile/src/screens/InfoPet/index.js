@@ -17,7 +17,7 @@ export function InfoPet({ route, navigation }) {
   async function favoritar(id) {
     await axios.post(`${REMOTE_URL}/pets/favorito/${id}`, {}, {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc0NTkzMTA4LCJleHAiOjE2NzQ2Nzk1MDh9.EeV659YTetR8uW3ybgfckDc0gJL5qpKO-PItKGh9y3k`,
+        Authorization: `Bearer ${getToken}`,
       }
     }).then(
       navigation.navigate("Home")
