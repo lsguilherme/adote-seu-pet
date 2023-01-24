@@ -32,7 +32,7 @@ export const login = (request, response) => {
             bcrypt.compare(request.body.senha, results.senha, function (err, result) {
                 if (result) {
                     var token = jwt.sign({ "id": results.dataValues.id }, process.env.PRIVATE_KEY, { expiresIn: '1d' });
-                    response.json({ "token": token })
+                    response.json({ "usuarioId": results.id, "token": token })
                 } else response.sendStatus(401)
             })
         }
