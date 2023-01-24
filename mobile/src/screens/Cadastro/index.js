@@ -86,7 +86,9 @@ export function Cadastro({ navigation }) {
         onRequestClose={() => {
           Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
-        }}>
+        }}
+        statusBarTranslucent
+        >
         <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)', width: '100%', height: '100%', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <View style={{ backgroundColor: '#FFF', borderRadius: 18, width: '80%', paddingVertical: 40, paddingHorizontal: 30 }}>
             <Text style={{
