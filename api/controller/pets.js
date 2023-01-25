@@ -5,6 +5,24 @@ dotenv.config();
 
 //List all pets
 export const getPets = (request, response) => {
+    /*
+
+    #swagger.tags = ['Pets']
+    
+    #swagger.summary = 'Buscar todos os pets'
+    
+    #swagger.description = '
+        Rota para buscar todos os pets.
+    '
+    
+    #swagger.responses[200] = {
+        description: 'Pets obtidos com sucesso!'
+    }
+    #swagger.responses[404] = {
+        description: 'Nenhum pet encontrado!'
+    }
+
+    */
     operations.findAllPets().then(results => {
         if (results.length > 0) response.send(results)
         else response.sendStatus(404)
@@ -12,6 +30,7 @@ export const getPets = (request, response) => {
 }
 
 export const getPetsUser = (request, response) => {
+    
     operations.findAllPetsUser().then(results => {
         if (results.length > 0) response.send(results)
         else response.sendStatus(404)
@@ -20,6 +39,25 @@ export const getPetsUser = (request, response) => {
 
 //List one pet
 export const getPet = (request, response) => {
+     /* 
+    
+    #swagger.tags = ['Pets']
+    
+    #swagger.summary = 'Buscar pet por id'
+    
+    #swagger.description = '
+        Rota para buscar o pet por id,
+        é necessário passar o id do usuário na ULR.
+    '
+    
+    #swagger.responses[200] = {
+        description: 'Pet obtido com sucesso!'
+    }
+    #swagger.responses[404] = {
+        description: 'Pet não encontrado!'
+    }
+
+    */
     operations.findPet(request.params.id).then(results => {
         if (results) response.send(results)
         else response.sendStatus(404)
@@ -34,6 +72,28 @@ export const getPetUser = (request, response) => {
 }
 
 export const savePet = (request, response) => {
+     /* 
+    
+    #swagger.tags = ['Pets']
+    
+    #swagger.summary = 'Salvar pet'
+    
+    #swagger.description = '
+        Rota para salvar o pet,
+        é necessário passar o nome, o email e a senha no body.
+    '
+
+    #swagger.responses[200] = {
+        description: 'Pet salvo com sucesso!'
+    }
+    #swagger.responses[400] = {
+        description: 'Erro na requisição!'
+    }
+    #swagger.responses[409] = {
+        description: 'Pet já cadastrado!'
+    }
+
+    */
     const [, token] = request.headers.authorization.split(' ');
 
     const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
@@ -54,6 +114,28 @@ export const savePet = (request, response) => {
 }
 
 export const updatePet = (request, response) => {
+     /* 
+    
+    #swagger.tags = ['Pets']
+    
+    #swagger.summary = 'Alterar nome do pet'
+    
+    #swagger.description = '
+        Rota para alterar o nome do pet,
+        é necessário passar o id do usuário na ULR, o token no header e o novo nome no body.
+    '
+
+    #swagger.responses[200] = {
+        description: 'Nome do pet alterado com sucesso!'
+    }
+    #swagger.responses[401] = {
+        description: 'Usuário não autorizado!'
+    }
+    #swagger.responses[404] = {
+        description: 'pet não encontrado!'
+    }
+    
+    */
     operations.updatePet(request.params.id, {
         "nome": request.body.nome,
         "idade": request.body.idade,
@@ -69,6 +151,27 @@ export const updatePet = (request, response) => {
 }
 
 export const removePet = (request, response) => {
+    /* 
+    
+    #swagger.tags = ['Pets']
+    
+    #swagger.summary = 'Deletar pet'
+    
+    #swagger.description = '
+        Rota para deletar o pet,
+        é necessário passar o id do pet na ULR e o token no header.
+    '
+    #swagger.responses[200] = {
+        description: 'Pet deletado com sucesso!'
+    }
+    #swagger.responses[401] = {
+        description: 'Usuário não autorizado!'
+    }
+    #swagger.responses[404] = {
+        description: 'Pet não encontrado!'
+    }
+
+    */
     operations.deletePet(request.params.id).then(results => {
         if (results) response.sendStatus(200)
         else response.sendStatus(404)
