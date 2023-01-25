@@ -14,8 +14,8 @@ export function InfoPet({ route, navigation }) {
   const [info, setInfo] = useState(route.params.petInfo);
   const [getFavorito, setFavorito] = useState(false);
 
-  async function favoritar(id) {
-    await axios.post(`${REMOTE_URL}/pets/favorito/${id}`, {}, {
+  async function favoritar() {
+    await axios.post(`${REMOTE_URL}/pets/favorito/${info.id}`, {}, {
       headers: {
         Authorization: `Bearer ${getToken}`,
       }
@@ -30,7 +30,7 @@ export function InfoPet({ route, navigation }) {
       const { userId } = route.params;
       const { token } = route.params;
       setUserID(userId);
-      setToken(token)
+      setToken(token);
     }
 
     let usuarios = []
@@ -93,7 +93,7 @@ export function InfoPet({ route, navigation }) {
             </Text>
           </View>
           <View style={{ justifyContent: "center" }}>
-            <TouchableOpacity onPress={() => favoritar(info.id)}>
+            <TouchableOpacity onPress={() => favoritar()}>
               <Icon name="heart" type="font-awesome" color={getFavorito ? "red" : "lightgray"} size={36} />
             </TouchableOpacity>
           </View>

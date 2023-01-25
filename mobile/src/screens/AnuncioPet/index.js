@@ -18,7 +18,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useIsFocused } from "@react-navigation/native";
 import axios from "axios";
-import { REMOTE_URL, LOCAL_URL } from "../../utils/url";
+import { REMOTE_URL } from "../../utils/url";
 export function AnuncioPet({ route }) {
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");

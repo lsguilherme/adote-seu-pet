@@ -39,10 +39,12 @@ export function Perfil({ route, navigation }) {
 
             <ScrollView style={styles.scrollView}>
 
-              <View style={styles.bloco}>
-                <Image source={require('../../assets/iconeEditarInfo.png')} />
-                <Text style={styles.texto}>Editar informações do perfil</Text>
-              </View>
+              <TouchableOpacity onPress={() => navigation.navigate("EditarInformacoes", { userId: getUserId, token: getToken })}>
+                <View style={styles.bloco}>
+                  <Image source={require('../../assets/iconeEditarInfo.png')} />
+                  <Text style={styles.texto}>Editar informações do perfil</Text>
+                </View>
+              </TouchableOpacity>
 
               <View style={styles.bloco}>
                 <Image source={require('../../assets/iconSeusPets.png')} />
@@ -67,6 +69,8 @@ export function Perfil({ route, navigation }) {
                   transparent={true}
                   onRequestClose={() => setExcluirContaModall(false)}>
                   <ExcluirContaModal
+                    userId={getUserId}
+                    token={getToken}
                     closeModal={() => setExcluirContaModall(false)} />
                 </Modal>
               </TouchableOpacity>

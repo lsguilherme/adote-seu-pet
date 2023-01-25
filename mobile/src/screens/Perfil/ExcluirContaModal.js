@@ -1,13 +1,23 @@
 import { StyleSheet, SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { THEME } from '../../theme';
+import axios from 'axios';
+import { REMOTE_URL } from "../../utils/url";
 
-export function ExcluirContaModal({ closeModal }) {
+export function ExcluirContaModal({ closeModal, userId, token }) {
 
     const titulo = "Excluir conta"
     const subtitulo = "Você quer mesmo apagar esta conta ?"
 
     const navigation = useNavigation()
+
+    async function deletarConta() {
+        await axios.delete(`${REMOTE_URL}/usuarios/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -31,7 +41,9 @@ export function ExcluirContaModal({ closeModal }) {
                         style={styles.YESactionButton}
                         onPressOut={closeModal}
 
-                        onPress={() => {navigation.navigate("Ready", {text: 'Conta excluida', botaotext: 'Sair'})
+                        onPress={() => {
+                            deletarConta()
+                            navigation.navigate("Ready", { text: 'Conta excluida', botaotext: 'Sair' })
                         }}>
                         <Text style={styles.YESbuttonActionText}>Sim</Text>
                     </TouchableOpacity>

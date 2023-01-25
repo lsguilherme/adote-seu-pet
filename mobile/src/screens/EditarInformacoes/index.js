@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   View,
@@ -9,19 +9,57 @@ import {
 } from "react-native";
 import { THEME } from "../../theme";
 import { useNavigation } from "@react-navigation/native";
+import { REMOTE_URL } from "../../utils/url";
+
 
 
 import { Footer } from "../../components/Footer";
 import { NomeDaPagina } from "../../components/NomeDaPagina";
 
 import { styles } from "./styles";
+import axios from "axios";
 
-export function EditarInformacoes() {
+import { useIsFocused } from "@react-navigation/native";
+export function EditarInformacoes({ route }) {
   const [text, onChangeText] = React.useState("");
   const [number, onChangeNumber] = React.useState(null);
   const [focusComponent, setFocusComponent] = React.useState("");
   const navigation = useNavigation()
 
+  const [nome, setNome] = useState();
+  const [getToken, setToken] = useState(route.params.token);
+  const [getUserId, setUserId] = useState(route.params.userId);
+
+  async function pegarNome() {
+    await axios.get(`${REMOTE_URL}/usuarios/${getUserId}`).then(results => {
+      setNome(results.data.nome)
+    })
+  }
+
+  async function editarNome() {
+    await axios.put(`${REMOTE_URL}/usuarios/${getUserId}`, {
+      nome: nome
+    }, {
+      headers: {
+        Authorization: `Bearer ${getToken}`
+      }
+    }).then(results => {
+      alert('Nome atualizado!')
+      pegarNome()
+    })
+  }
+
+  const refresh = useIsFocused();
+  useEffect(() => {
+    if (route.params) {
+      const { token } = route.params;
+      setToken(token);
+      const { userId } = route.params;
+      setUserId(userId);
+    }
+
+    pegarNome()
+  }, [refresh])
 
   return (
     <View style={styles.container}>
@@ -35,8 +73,8 @@ export function EditarInformacoes() {
             <Text style={styles.Text}>Nome</Text>
             <TextInput
               placeholder="Insira o seu nome"
-              onChangeText={onChangeText}
-              value={text}
+              onChangeText={value => setNome(value)}
+              value={nome}
               style={
                 focusComponent === "name"
                   ? {
@@ -49,7 +87,8 @@ export function EditarInformacoes() {
                 setFocusComponent("name");
               }}
             />
-            <Text style={styles.Text}>Mudar Senha</Text>
+
+            {/* <Text style={styles.Text}>Mudar Senha</Text>
             <TextInput
               placeholder="Insira a sua senha"
               onChangeText={onChangeNumber}
@@ -67,6 +106,7 @@ export function EditarInformacoes() {
               }}
               keyboardType="numeric"
             />
+
             <Text style={styles.Text}>Email</Text>
             <TextInput
               placeholder="Insira o seu e-mail"
@@ -83,9 +123,9 @@ export function EditarInformacoes() {
               onFocus={() => {
                 setFocusComponent("e-mail");
               }}
-            />
+            /> */}
 
-            <Button onPress={() => { navigation.navigate('PetsAnunciados') }}
+            <Button onPress={() => editarNome()}
               title="Salvar"
               color={THEME.COLORS.PRIMARY}
 
