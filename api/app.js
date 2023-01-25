@@ -14,11 +14,7 @@ app.use(express.json())
 app.use(indexRoutes);
 
 app.get('/', (req, res) => {
-    res.send(`
-        <h1 style='display: flex; justify-content: center; font-family: sans-serif; margin-top: 5vh'>
-            Documentação Swagger: <a href="${process.env.HTTP}://${process.env.URL_BASE}/doc"> ${process.env.HTTP}://${process.env.URL_BASE}/doc</a>
-        </h1>
-    `)
+    res.redirect("/doc");
 });
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
