@@ -34,20 +34,18 @@ export const styles = StyleSheet.create({
     
   },
   bloco: {
-    height: 53,
-    // width: 350,
     backgroundColor: 'white',
     borderRadius: 8,
     border: 1,
     margin: 9,
-    padding: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
     alignItems: 'center',
     flexDirection: 'row',
     
   },
   blocoInterno:{
     margin:10
-    // width:310
   },
   texto: {
     paddingLeft: 15

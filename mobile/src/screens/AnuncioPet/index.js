@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Button,
+  TouchableOpacity,
   View,
   ScrollView,
   SafeAreaView,
@@ -23,7 +23,7 @@ export function AnuncioPet() {
 
   return (
     <View style={styles.container}>
-      <NomeDaPagina nomePagina="Anucie o seu pet"/>
+      <NomeDaPagina nomePagina="Anucie o seu pet" />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <SafeAreaView>
           <View style={styles.fotoPet}>
@@ -99,11 +99,21 @@ export function AnuncioPet() {
                 setFocusComponent("sexo");
               }}
             />
-            <Button onPress={() => { navigation.navigate('PetsAnunciados') }}
-              title="Publicar"
-              color={THEME.COLORS.PRIMARY}
 
-            ></Button>
+            <View style={{ marginTop: 20, alignItems: "center" }}>
+              <TouchableOpacity style={{
+                backgroundColor: THEME.COLORS.PRIMARY,
+                justifyContent: "center",
+                alignItems: "center",
+                paddingVertical: 16,
+                width: '92%',
+                borderRadius: 8
+              }}
+                activeOpacity={0.7}
+                onPress={() => { navigation.navigate('PetsAnunciados') }}>
+                <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>Publicar</Text>
+              </TouchableOpacity>
+            </View>
 
           </View>
         </SafeAreaView>
