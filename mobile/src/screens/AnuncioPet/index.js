@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   TouchableOpacity,
   View,
@@ -14,12 +14,46 @@ import { NomeDaPagina } from "../../components/NomeDaPagina";
 
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import { REMOTE_URL } from "../../utils/url";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function AnuncioPet() {
-  const [text, onChangeText] = React.useState("");
-  const [number, onChangeNumber] = React.useState(null);
-  const [focusComponent, setFocusComponent] = React.useState("");
-  const navigation = useNavigation()
+  const [nome, setNome] = useState();
+  const [idade, setIdade] = useState();
+  const [raca, setRaca] = useState();
+  const [sexo, setSexo] = useState();
+  const [token, setToken] = useState();
+  const [focusComponent, setFocusComponent] = useState("");
+
+  const navigation = useNavigation();
+
+  async function inserirDados() {
+    await axios
+      .post(`${REMOTE_URL}/pets/`, {
+        nome: nome,
+        idade: idade,
+        raca: raca,
+        sexo: sexo,
+        imagem: "",
+        latitude: "",
+        longitude: "",
+      })
+      .then(function () {
+        alert("adicionado com sucesso");
+      })
+      .catch(function (error) {
+        alert("erro" + error);
+      });
+  }
+
+  useEffect(() => {
+    (async function () {
+      const jwt = await AsyncStorage.getItem("userId");
+      console.log(jwt);
+      setToken(jwt);
+    });
+  });
 
   return (
     <View style={styles.container}>
@@ -33,14 +67,14 @@ export function AnuncioPet() {
             <Text style={styles.Text}>Nome do Pet</Text>
             <TextInput
               placeholder="Insira o nome do Pet"
-              onChangeText={onChangeText}
-              value={text}
+              onChangeText={(text) => setNome(text)}
+              value={nome}
               style={
                 focusComponent === "name"
                   ? {
-                    ...styles.bloco,
-                    ...{ borderColor: "#772583", borderWidth: 2 },
-                  }
+                      ...styles.bloco,
+                      ...{ borderColor: "#772583", borderWidth: 2 },
+                    }
                   : styles.bloco
               }
               onFocus={() => {
@@ -50,14 +84,14 @@ export function AnuncioPet() {
             <Text style={styles.Text}>Idade</Text>
             <TextInput
               placeholder="Insira a idade do Pet"
-              onChangeText={onChangeNumber}
-              value={number}
+              onChangeText={(text) => setIdade(text)}
+              value={idade}
               style={
                 focusComponent === "idade"
                   ? {
-                    ...styles.bloco,
-                    ...{ borderColor: "#772583", borderWidth: 2 },
-                  }
+                      ...styles.bloco,
+                      ...{ borderColor: "#772583", borderWidth: 2 },
+                    }
                   : styles.bloco
               }
               onFocus={() => {
@@ -68,14 +102,14 @@ export function AnuncioPet() {
             <Text style={styles.Text}>Raça</Text>
             <TextInput
               placeholder="Insira a raça do Pet"
-              onChangeText={onChangeText}
-              value={text}
+              onChangeText={(text) => setRaca(text)}
+              value={raca}
               style={
                 focusComponent === "raça"
                   ? {
-                    ...styles.bloco,
-                    ...{ borderColor: "#772583", borderWidth: 2 },
-                  }
+                      ...styles.bloco,
+                      ...{ borderColor: "#772583", borderWidth: 2 },
+                    }
                   : styles.bloco
               }
               onFocus={() => {
@@ -85,14 +119,14 @@ export function AnuncioPet() {
             <Text style={styles.Text}>Sexo</Text>
             <TextInput
               placeholder="Insira o sexo do Pet"
-              onChangeText={onChangeText}
-              value={text}
+              onChangeText={(text) => setSexo(text)}
+              value={sexo}
               style={
                 focusComponent === "sexo"
                   ? {
-                    ...styles.bloco,
-                    ...{ borderColor: "#772583", borderWidth: 2 },
-                  }
+                      ...styles.bloco,
+                      ...{ borderColor: "#772583", borderWidth: 2 },
+                    }
                   : styles.bloco
               }
               onFocus={() => {
@@ -101,20 +135,25 @@ export function AnuncioPet() {
             />
 
             <View style={{ marginTop: 20, alignItems: "center" }}>
-              <TouchableOpacity style={{
-                backgroundColor: THEME.COLORS.PRIMARY,
-                justifyContent: "center",
-                alignItems: "center",
-                paddingVertical: 16,
-                width: '92%',
-                borderRadius: 8
-              }}
+              <TouchableOpacity
+                style={{
+                  backgroundColor: THEME.COLORS.PRIMARY,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingVertical: 16,
+                  width: "92%",
+                  borderRadius: 8,
+                }}
                 activeOpacity={0.7}
-                onPress={() => { navigation.navigate('PetsAnunciados') }}>
-                <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>Publicar</Text>
+                onPress={() => inserirDados()}
+              >
+                <Text
+                  style={{ color: "white", fontWeight: "bold", fontSize: 16 }}
+                >
+                  Publicar
+                </Text>
               </TouchableOpacity>
             </View>
-
           </View>
         </SafeAreaView>
       </ScrollView>

@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useId, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -39,18 +39,16 @@ export function Home({ route, navigation }) {
     }
 
     async function resgatarDados() {
-      const result = await axios(
-        `${REMOTE_URL}/pets/user`,
-        {
-          headers: {
-            Authorization: `Beare ${getToken}`,
-          },
-        }
-      );
+      const result = await axios(`${REMOTE_URL}/pets/user`, {
+        headers: {
+          Authorization: `Beare ${getToken}`,
+        },
+      });
       setData(result.data);
     }
     resgatarDados();
   }, [refresh]);
+  console.log(getUserId);
 
   return (
     <>
@@ -187,7 +185,10 @@ export function Home({ route, navigation }) {
           <Text
             style={styles.pets.link}
             onPress={() => {
-              navigation.navigate("TodosOsPets", { userId: getUserId, token: getToken });
+              navigation.navigate("TodosOsPets", {
+                userId: getUserId,
+                token: getToken,
+              });
             }}
           >
             Ver todos
@@ -206,7 +207,11 @@ export function Home({ route, navigation }) {
             >
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("InfoPet", { 'petInfo': item, userId: getUserId, token: getToken })
+                  navigation.navigate("InfoPet", {
+                    petInfo: item,
+                    userId: getUserId,
+                    token: getToken,
+                  });
                 }}
               >
                 <Image

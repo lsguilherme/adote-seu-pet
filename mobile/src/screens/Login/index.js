@@ -13,6 +13,7 @@ import { THEME } from "../../theme";
 import { styles } from "./styles";
 import { REMOTE_URL } from "../../utils/url";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Login({ navigation }) {
   const [getEmail, setEmail] = useState("mcm1@discente.ifpe.edu.br");
@@ -24,11 +25,20 @@ export function Login({ navigation }) {
         email: getEmail,
         senha: getSenha,
       })
-      .then(function (response) {
+      .then(async function (response) {
         setEmail("");
         setSenha("");
 
-        navigation.navigate("Home", { userId: response.data.usuarioId, token: response.data.token });
+        try {
+          await AsyncStorage.setItem("jwt", response.data.token);
+          await AsyncStorage.setItem("userId", String(response.data.usuarioId));
+          const jwt = await AsyncStorage.getItem("userId");
+          console.log(JSON.stringify(jwt));
+        } catch (e) {
+          console.log(e);
+        }
+
+        navigation.navigate("Home");
       })
       .catch(function (error) {
         alert(error);
