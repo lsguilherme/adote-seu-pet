@@ -132,6 +132,27 @@ export const operations = {
         return await PetsFavoritos.findOne({ where: { petId: petId, usuarioId: usuarioId } });
     },
 
+    findPetFavoritoByUser: async function (usuarioId) {
+        return await Pets.findAll({
+            attributes: [
+                "id",
+                "nome",
+                "idade",
+                "sexo",
+                "raca",
+                "imagem",
+                "latitude",
+                "longitude",
+                [Sequelize.fn('date_format', Sequelize.col('pets.createdAt'), '%d/%m/%Y %H:%i:%s'), 'criacao'],
+                [Sequelize.fn('date_format', Sequelize.col('pets.updatedAt'), '%d/%m/%Y %H:%i:%s'), 'edicao']
+            ],
+            include: [
+                { model: Usuario, attributes: ["id", "nome"] },
+                { model: PetsFavoritos, attributes: ["usuarioId"], where: { usuarioId: usuarioId } }
+            ]
+        });
+    },
+
     favoritarPet: async function (pet) {
         return await PetsFavoritos.create({
             "petId": pet.petId,

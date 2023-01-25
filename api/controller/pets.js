@@ -106,3 +106,20 @@ export const favoritarPet = (request, response) => {
     })
 
 }
+
+export const buscarPetsFavoritados = (request, response) => {
+    /* 
+    #swagger.tags = ['Pets']
+    #swagger.summary = 'Pets favoritados'
+    #swagger.description = 'Rota para buscar os pets favoritos do usuário.'
+    */
+
+    const [, token] = request.headers.authorization.split(' ');
+
+    const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+
+    operations.findPetFavoritoByUser(decoded.id).then(results => {
+        if (results) response.send(results)
+        else response.sendStatus(404)
+    })
+}
