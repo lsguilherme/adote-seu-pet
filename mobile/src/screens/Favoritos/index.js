@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { View, Image, Text, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
 import { Header, Button } from 'react-native-elements'
 import { styles } from './styles';
@@ -43,7 +43,22 @@ function PetCard({ item }) {
   );
 }
 
-export function Favoritos({ navigation }) {
+import { useIsFocused } from "@react-navigation/native";
+export function Favoritos({ route, navigation }) {
+
+  const [getToken, setToken] = useState();
+  const [getUserId, setUserId] = useState();
+
+  const refresh = useIsFocused();
+  useEffect(() => {
+    if (route.params) {
+      const { token } = route.params;
+      setToken(token);
+      const { userId } = route.params;
+      setUserId(userId);
+    }
+  }, [refresh])
+
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -68,7 +83,12 @@ export function Favoritos({ navigation }) {
 
 
 
-        <Footer />
+        <Footer
+          homePress={() => navigation.navigate("Home", { userId: getUserId, token: getToken })}
+          anuncioPress={() => navigation.navigate("AnuncioPet", { userId: getUserId, token: getToken })}
+          chatPress={() => navigation.navigate("Conversations", { userId: getUserId, token: getToken })}
+          perfilPress={() => navigation.navigate("Perfil", { userId: getUserId, token: getToken })}
+        />
 
       </SafeAreaView>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import {
     Button,
     View,
@@ -8,7 +8,7 @@ import {
     Text,
     Image,
     Dimensions,
-    
+
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { THEME } from "../../theme";
@@ -19,7 +19,8 @@ import { NomeDaPagina } from "../../components/NomeDaPagina";
 import { styles } from "./styles";
 
 
-export function EditarInformacoesPet() {
+import { useIsFocused } from "@react-navigation/native";
+export function EditarInformacoesPet({ route }) {
     const [text, onChangeText] = React.useState("");
     const [number, onChangeNumber] = React.useState(null);
     const [focusComponent, setFocusComponent] = React.useState("");
@@ -27,6 +28,20 @@ export function EditarInformacoesPet() {
     const imageHeight = Math.round(dimensions.width * 9 / 16);
     const imageWidth = dimensions.width;
     const navigation = useNavigation()
+
+
+    const [getToken, setToken] = useState();
+    const [getUserId, setUserId] = useState();
+
+    const refresh = useIsFocused();
+    useEffect(() => {
+        if (route.params) {
+            const { token } = route.params;
+            setToken(token);
+            const { userId } = route.params;
+            setUserId(userId);
+        }
+    }, [refresh])
 
     return (
         <View style={styles.container}>
@@ -117,7 +132,13 @@ export function EditarInformacoesPet() {
                     </View>
                 </ScrollView>
             </SafeAreaView>
-            <Footer />
+
+            <Footer
+                homePress={() => navigation.navigate("Home", { userId: getUserId, token: getToken })}
+                anuncioPress={() => navigation.navigate("AnuncioPet", { userId: getUserId, token: getToken })}
+                chatPress={() => navigation.navigate("Conversations", { userId: getUserId, token: getToken })}
+                perfilPress={() => navigation.navigate("Perfil", { userId: getUserId, token: getToken })}
+            />
         </View>
     );
 }

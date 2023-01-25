@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Image, Text, SafeAreaView, FlatList } from 'react-native';
 import { Header } from 'react-native-elements'
 import { styles } from './styles';
 
 import { Footer } from "../../components/Footer";
+import { useIsFocused } from "@react-navigation/native";
 
 const pets = [
   {
@@ -27,8 +28,8 @@ const pets = [
 
 ];
 
-function PetCard({ item }) {
 
+function PetCard({ item }) {
   return (
     <View style={styles.card.first} overflow='hidden'>
       <Image source={item.foto} />
@@ -43,7 +44,20 @@ function PetCard({ item }) {
   );
 }
 
-export function PetsAnunciados() {
+export function PetsAnunciados({ route }) {
+  const [getToken, setToken] = useState();
+  const [getUserId, setUserId] = useState();
+
+  const refresh = useIsFocused();
+  useEffect(() => {
+    if (route.params) {
+      const { token } = route.params;
+      setToken(token);
+      const { userId } = route.params;
+      setUserId(userId);
+    }
+  }, [refresh])
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.screen}>
@@ -63,7 +77,12 @@ export function PetsAnunciados() {
 
 
 
-        <Footer />
+        <Footer
+          homePress={() => navigation.navigate("Home", { userId: getUserId, token: getToken })}
+          anuncioPress={() => navigation.navigate("AnuncioPet", { userId: getUserId, token: getToken })}
+          chatPress={() => navigation.navigate("Conversations", { userId: getUserId, token: getToken })}
+          perfilPress={() => navigation.navigate("Perfil", { userId: getUserId, token: getToken })}
+        />
 
       </SafeAreaView>
 

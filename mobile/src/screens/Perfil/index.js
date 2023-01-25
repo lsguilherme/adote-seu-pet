@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, Modal, SafeAreaView, StatusBar } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
@@ -10,11 +10,23 @@ import { styles } from './styles';
 import { SairDaContaModal } from "./SairDaContaModal";
 import { ExcluirContaModal } from "./ExcluirContaModal";
 
-export function Perfil({ navigation }) {
-
+import { useIsFocused } from "@react-navigation/native";
+export function Perfil({ route, navigation }) {
   const [visibleModal, setVisibleModal] = useState(false);
-
   const [excluirContaModall, setExcluirContaModall] = useState(false);
+
+  const [getToken, setToken] = useState();
+  const [getUserId, setUserId] = useState();
+
+  const refresh = useIsFocused();
+  useEffect(() => {
+    if (route.params) {
+      const { token } = route.params;
+      setToken(token);
+      const { userId } = route.params;
+      setUserId(userId);
+    }
+  }, [refresh])
 
   return (
     <>
@@ -81,7 +93,13 @@ export function Perfil({ navigation }) {
         </View>
 
       </SafeAreaView>
-      <Footer />
+
+      <Footer
+        homePress={() => navigation.navigate("Home", { userId: getUserId, token: getToken })}
+        anuncioPress={() => navigation.navigate("AnuncioPet", { userId: getUserId, token: getToken })}
+        chatPress={() => navigation.navigate("Conversations", { userId: getUserId, token: getToken })}
+        perfilPress={() => navigation.navigate("Perfil", { userId: getUserId, token: getToken })}
+      />
     </>
   );
 }

@@ -30,7 +30,12 @@ export function Chat(navigate) {
 
             </SafeAreaView>
 
-            <Footer />
+            <Footer
+                homePress={() => navigation.navigate("Home", { userId: getUserId, token: getToken })}
+                anuncioPress={() => navigation.navigate("AnuncioPet", { userId: getUserId, token: getToken })}
+                chatPress={() => navigation.navigate("Conversations", { userId: getUserId, token: getToken })}
+                perfilPress={() => navigation.navigate("Perfil", { userId: getUserId, token: getToken })}
+            />
         </>
     );
 }
