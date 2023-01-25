@@ -20,7 +20,7 @@ export function InfoPet({ route, navigation }) {
         Authorization: `Bearer ${getToken}`,
       }
     }).then(
-      navigation.navigate("Home")
+      setFavorito(!getFavorito)
     )
   }
 
