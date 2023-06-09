@@ -4,8 +4,8 @@ import Usuario from "../models/users.js";
 import PetsFavoritos from "../models/petFavoritos.js";
 
 // Sincronizar somente no ambiente de desenvolvimento
-await Pets.sync({ force: true });
-await PetsFavoritos.sync({ force: true });
+// await Pets.sync({ force: true });
+// await PetsFavoritos.sync({ force: true });
 
 export const operations = {
     createPet: async function (pet) {
