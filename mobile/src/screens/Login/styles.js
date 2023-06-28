@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     height: 120,
   },
   title: {
-    fontSize: THEME.FONT_SIZE.LG,
+    fontSize: 20,
     fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
     color: THEME.COLORS.TEXT_GRAY,
     marginVertical: 24,
@@ -30,6 +30,15 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: THEME.FONT_SIZE.SM,
     fontFamily: THEME.FONT_FAMILY.REGULAR,
+  },
+  inputPassword: {
+    paddingLeft: 15,
+    backgroundColor: THEME.COLORS.BACKGROUND,
+    width: 340,
+    height: 48,
+    borderRadius: 16,
+    flexDirection: "row",
+    alignItems: "center",
   },
 
   botaoContainer: {

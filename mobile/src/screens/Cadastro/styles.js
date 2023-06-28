@@ -34,6 +34,16 @@ export const styles = StyleSheet.create({
     paddingLeft: 15,
     backgroundColor: THEME.COLORS.BACKGROUND,
   },
+
+  inputPassword: {
+    paddingLeft: 15,
+    backgroundColor: THEME.COLORS.BACKGROUND,
+    width: 340,
+    height: 48,
+    borderRadius: 16,
+    flexDirection: "row",
+    alignItems: "center",
+  },
   label: {
     color: "black",
     marginLeft: 6,
@@ -60,5 +70,36 @@ export const styles = StyleSheet.create({
     width: 340,
     alignItems: "center",
     color: THEME.COLORS.TEXT_PURPLE,
+  },
+  modalContainer: {
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    width: "100%",
+    height: "100%",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalBackground: {
+    backgroundColor: "#FFF",
+    borderRadius: 18,
+    width: "80%",
+    paddingVertical: 40,
+    paddingHorizontal: 30,
+  },
+  modalTitle: {
+    fontFamily: THEME.FONT_FAMILY.SEMI_BOLD,
+    color: THEME.COLORS.TEXT_GRAY,
+    fontSize: 22,
+    marginBottom: 4,
+    textAlign: "center",
+  },
+  modalInput: {
+    borderRadius: 16,
+    height: 48,
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "700",
+    backgroundColor: "#EEE",
+    marginVertical: 4,
   },
 });
