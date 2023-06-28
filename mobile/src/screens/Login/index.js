@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   KeyboardAvoidingView,
@@ -19,11 +19,15 @@ import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import usePersist from "../../hooks/usePersist";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Login({ navigation }) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [hidePass, setHidePass] = useState(true);
+
+  const { setTokenStored, setUserStored } = usePersist();
 
   const schema = yup.object({
     email: yup
@@ -52,8 +56,17 @@ export function Login({ navigation }) {
         email: data?.email,
         senha: data?.senha,
       })
-      .then(function (response) {
+      .then(async function (response) {
+        const userData = {
+          token: response?.data?.token,
+          user: response?.data?.usuarioId,
+        };
+
+        setTokenStored(userData.token);
+        setUserStored(userData.user);
+
         reset({ email: "", senha: "" });
+
         navigation.navigate("Home", {
           userId: response.data.usuarioId,
           token: response.data.token,
@@ -69,6 +82,7 @@ export function Login({ navigation }) {
           setError(true);
           setErrorMessage("Servidor ocupado, tente mais tarde!");
         }
+        console.log(error);
       });
   }
   return (

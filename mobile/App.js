@@ -27,6 +27,7 @@ import {
   Inter_700Bold,
   Inter_900Black,
 } from "@expo-google-fonts/inter";
+import { UserContextProvider } from "./src/context/UserContext";
 
 export default function App() {
   const { Navigator, Screen } = createNativeStackNavigator();
@@ -42,38 +43,40 @@ export default function App() {
     return null;
   } else {
     return (
-      <NavigationContainer>
-        <StatusBar
-          barStyle="dark-content"
-          backgroundColor="transparent"
-          translucent
-        />
-        <Navigator
-          initialRouteName="Inicio"
-          screenOptions={{ headerShown: false }}
-        >
-          <Screen name="Perfil" component={Perfil} />
-          <Screen name="Ready" component={Ready} />
-          <Screen name="Inicio" component={Inicio} />
-          <Screen name="Login" component={Login} />
-          <Screen name="Cadastro" component={Cadastro} />
-          <Screen name="Home" component={Home} />
-          <Screen name="AnuncioPet" component={AnuncioPet} />
-          <Screen name="Conversations" component={Conversations} />
-          <Screen name="EditarInformacoes" component={EditarInformacoes} />
-          <Screen name="TodosOsPets" component={TodosOsPets} />
-          <Screen name="Favoritos" component={Favoritos} />
-          <Screen name="Chat" component={Chat} />
-          <Screen
-            name="EditarInformacoesPet"
-            component={EditarInformacoesPet}
+      <UserContextProvider>
+        <NavigationContainer>
+          <StatusBar
+            barStyle="dark-content"
+            backgroundColor="transparent"
+            translucent
           />
-          <Screen name="InfoPet" component={InfoPet} />
-          <Screen name="PetsAnunciados" component={PetsAnunciados} />
-          <Screen name="ExcluirContaModal" component={ExcluirContaModal} />
-          <Screen name="SairDaContaModal" component={SairDaContaModal} />
-        </Navigator>
-      </NavigationContainer>
+          <Navigator
+            initialRouteName="Inicio"
+            screenOptions={{ headerShown: false }}
+          >
+            <Screen name="Perfil" component={Perfil} />
+            <Screen name="Ready" component={Ready} />
+            <Screen name="Inicio" component={Inicio} />
+            <Screen name="Login" component={Login} />
+            <Screen name="Cadastro" component={Cadastro} />
+            <Screen name="Home" component={Home} />
+            <Screen name="AnuncioPet" component={AnuncioPet} />
+            <Screen name="Conversations" component={Conversations} />
+            <Screen name="EditarInformacoes" component={EditarInformacoes} />
+            <Screen name="TodosOsPets" component={TodosOsPets} />
+            <Screen name="Favoritos" component={Favoritos} />
+            <Screen name="Chat" component={Chat} />
+            <Screen
+              name="EditarInformacoesPet"
+              component={EditarInformacoesPet}
+            />
+            <Screen name="InfoPet" component={InfoPet} />
+            <Screen name="PetsAnunciados" component={PetsAnunciados} />
+            <Screen name="ExcluirContaModal" component={ExcluirContaModal} />
+            <Screen name="SairDaContaModal" component={SairDaContaModal} />
+          </Navigator>
+        </NavigationContainer>
+      </UserContextProvider>
     );
   }
 }

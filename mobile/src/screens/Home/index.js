@@ -20,8 +20,11 @@ import { useIsFocused } from "@react-navigation/native";
 import { styles } from "./styles";
 import axios from "axios";
 import { REMOTE_URL } from "../../utils/url";
+import usePersist from "../../hooks/usePersist";
 
 export function Home({ route, navigation }) {
+  const { tokenStored, userStored } = usePersist();
+
   const [getToken, setToken] = useState();
   const [getUserId, setUserId] = useState();
   const [maisModal, setMaisModal] = useState(false);
@@ -39,14 +42,11 @@ export function Home({ route, navigation }) {
     }
 
     async function resgatarDados() {
-      const result = await axios(
-        `${REMOTE_URL}/pets/user`,
-        {
-          headers: {
-            Authorization: `Beare ${getToken}`,
-          },
-        }
-      );
+      const result = await axios(`${REMOTE_URL}/pets/user`, {
+        headers: {
+          Authorization: `Beare ${getToken}`,
+        },
+      });
       setData(result.data);
     }
     resgatarDados();
@@ -187,7 +187,10 @@ export function Home({ route, navigation }) {
           <Text
             style={styles.pets.link}
             onPress={() => {
-              navigation.navigate("TodosOsPets", { userId: getUserId, token: getToken });
+              navigation.navigate("TodosOsPets", {
+                userId: getUserId,
+                token: getToken,
+              });
             }}
           >
             Ver todos
@@ -206,7 +209,11 @@ export function Home({ route, navigation }) {
             >
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("InfoPet", { 'petInfo': item, userId: getUserId, token: getToken })
+                  navigation.navigate("InfoPet", {
+                    petInfo: item,
+                    userId: getUserId,
+                    token: getToken,
+                  });
                 }}
               >
                 <Image
@@ -233,10 +240,24 @@ export function Home({ route, navigation }) {
       </SafeAreaView>
 
       <Footer
-        homePress={() => navigation.navigate("Home", { userId: getUserId, token: getToken })}
-        anuncioPress={() => navigation.navigate("AnuncioPet", { userId: getUserId, token: getToken })}
-        chatPress={() => navigation.navigate("Conversations", { userId: getUserId, token: getToken })}
-        perfilPress={() => navigation.navigate("Perfil", { userId: getUserId, token: getToken })}
+        homePress={() =>
+          navigation.navigate("Home", { userId: getUserId, token: getToken })
+        }
+        anuncioPress={() =>
+          navigation.navigate("AnuncioPet", {
+            userId: getUserId,
+            token: getToken,
+          })
+        }
+        chatPress={() =>
+          navigation.navigate("Conversations", {
+            userId: getUserId,
+            token: getToken,
+          })
+        }
+        perfilPress={() =>
+          navigation.navigate("Perfil", { userId: getUserId, token: getToken })
+        }
       />
     </>
   );
