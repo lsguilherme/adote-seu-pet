@@ -29,8 +29,6 @@ export function Login({ navigation }) {
   const { setTokenStored, setUserStored, tokenStored, userStored } =
     usePersist();
 
-  console.log(tokenStored);
-  console.log(userStored);
   const schema = yup.object({
     email: yup
       .string()
