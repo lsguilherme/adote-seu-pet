@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Image,
   SafeAreaView,
@@ -9,8 +9,26 @@ import {
 import { THEME } from "../../theme";
 
 import { styles } from "./styles";
+import usePersist from "../../hooks/usePersist";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Inicio({ navigation }) {
+  /* const { tokenStored, userStored } = usePersist();
+
+  console.log(tokenStored);
+  useEffect(() => {
+    const token = AsyncStorage.getItem("token");
+
+    if (tokenStored) {
+      return navigation.navigate("Home", {
+        token: tokenStored,
+        userId: userStored,
+      });
+    } else {
+      return navigation.navigate("Inicio");
+    }
+  }, []); */
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={{ alignItems: "center" }}>

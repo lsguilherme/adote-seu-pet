@@ -20,15 +20,17 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import usePersist from "../../hooks/usePersist";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Login({ navigation }) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [hidePass, setHidePass] = useState(true);
 
-  const { setTokenStored, setUserStored } = usePersist();
+  const { setTokenStored, setUserStored, tokenStored, userStored } =
+    usePersist();
 
+  console.log(tokenStored);
+  console.log(userStored);
   const schema = yup.object({
     email: yup
       .string()

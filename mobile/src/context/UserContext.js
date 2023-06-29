@@ -19,18 +19,49 @@ export function UserContextProvider({ children }) {
         setTokenStored(result);
       });
     };
+
+    const getUser = async () => {
+      await AsyncStorage.getItem("userId").then((res) => {
+        const result = JSON.parse(res);
+        setUserStored(result);
+      });
+    };
+
     getToken();
-  }, [tokenStored]);
+    getUser();
+  }, [tokenStored, userStored]);
 
   const setToken = async (token) => {
-    await AsyncStorage.setItem("token", JSON.stringify(token));
-    setTokenStored(token);
+    try {
+      await AsyncStorage.setItem("token", JSON.stringify(token));
+      setTokenStored(token);
+    } catch (error) {
+      console.log("Error saving token:", error);
+    }
   };
+
+  const setUserId = async (userId) => {
+    try {
+      await AsyncStorage.setItem("userId", JSON.stringify(userId));
+      setUserStored(userId);
+    } catch (error) {
+      console.log("Error saving userId:", error);
+    }
+  };
+
+  const signOut = async () => {
+    await AsyncStorage.removeItem("token");
+    await AsyncStorage.removeItem("userId");
+    setUserStored({});
+    setTokenStored({});
+  };
+
   const currentUser = {
     userStored,
-    setUserStored,
+    setUserStored: setUserId,
     tokenStored,
     setTokenStored: setToken,
+    signOut,
   };
 
   return (

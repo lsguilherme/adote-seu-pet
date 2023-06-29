@@ -54,12 +54,12 @@ export default function App() {
             initialRouteName="Inicio"
             screenOptions={{ headerShown: false }}
           >
+            <Screen name="Inicio" component={Inicio} />
+            <Screen name="Home" component={Home} />
             <Screen name="Perfil" component={Perfil} />
             <Screen name="Ready" component={Ready} />
-            <Screen name="Inicio" component={Inicio} />
             <Screen name="Login" component={Login} />
             <Screen name="Cadastro" component={Cadastro} />
-            <Screen name="Home" component={Home} />
             <Screen name="AnuncioPet" component={AnuncioPet} />
             <Screen name="Conversations" component={Conversations} />
             <Screen name="EditarInformacoes" component={EditarInformacoes} />

@@ -13,14 +13,12 @@ import usePersist from "../../hooks/usePersist";
 export function SairDaContaModal({ closeModal }) {
   const titulo = "Sair da conta";
 
-  const { setUserStored, setTokenStored } = usePersist();
+  const { setUserStored, setTokenStored, signOut } = usePersist();
 
   const navigation = useNavigation();
 
   const handleYesPress = async () => {
-    await AsyncStorage.removeItem("token");
-    setUserStored({});
-    setTokenStored({});
+    signOut();
     navigation.navigate("Login");
     closeModal();
   };

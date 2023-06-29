@@ -7,39 +7,36 @@ import { useIsFocused } from "@react-navigation/native";
 import { styles } from "./styles";
 import { REMOTE_URL } from "../../utils/url";
 import axios from "axios";
+import usePersist from "../../hooks/usePersist";
 
 export function InfoPet({ route, navigation }) {
-  const [getUserID, setUserID] = useState(route.params.userId);
-  const [getToken, setToken] = useState(route.params.token);
+  const { userStored, tokenStored } = usePersist();
   const [info, setInfo] = useState(route.params.petInfo);
   const [getFavorito, setFavorito] = useState(false);
 
   async function favoritar() {
-    await axios.post(`${REMOTE_URL}/pets/favorito/${info.id}`, {}, {
-      headers: {
-        Authorization: `Bearer ${getToken}`,
-      }
-    }).then(
-      setFavorito(!getFavorito)
-    )
+    await axios
+      .post(
+        `${REMOTE_URL}/pets/favorito/${info.id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${tokenStored}`,
+          },
+        }
+      )
+      .then(setFavorito(!getFavorito));
   }
 
   const refresh = useIsFocused();
   useEffect(() => {
-    if (route.params) {
-      const { userId } = route.params;
-      const { token } = route.params;
-      setUserID(userId);
-      setToken(token);
-    }
-
-    let usuarios = []
-    info.petsFavoritos.forEach(element => {
-      usuarios.push(element.usuarioId)
+    let usuarios = [];
+    info.petsFavoritos.forEach((element) => {
+      usuarios.push(element.usuarioId);
     });
 
-    if (usuarios.includes(getUserID)) setFavorito(true)
-    else setFavorito(false)
+    if (usuarios.includes(userStored)) setFavorito(true);
+    else setFavorito(false);
   }, [refresh]);
 
   return (
@@ -94,7 +91,12 @@ export function InfoPet({ route, navigation }) {
           </View>
           <View style={{ justifyContent: "center" }}>
             <TouchableOpacity onPress={() => favoritar()}>
-              <Icon name="heart" type="font-awesome" color={getFavorito ? "red" : "lightgray"} size={36} />
+              <Icon
+                name="heart"
+                type="font-awesome"
+                color={getFavorito ? "red" : "lightgray"}
+                size={36}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -125,9 +127,7 @@ export function InfoPet({ route, navigation }) {
               alignItems: "center",
             }}
           >
-            <Text style={{ fontSize: 20 }}>
-              {info.sexo}
-            </Text>
+            <Text style={{ fontSize: 20 }}>{info.sexo}</Text>
             <Text style={{ fontWeight: "700" }}>Sexo</Text>
           </View>
           <View

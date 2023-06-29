@@ -11,8 +11,6 @@ import { THEME } from "../../theme";
 import { useNavigation } from "@react-navigation/native";
 import { REMOTE_URL } from "../../utils/url";
 
-
-
 import { Footer } from "../../components/Footer";
 import { NomeDaPagina } from "../../components/NomeDaPagina";
 
@@ -20,33 +18,41 @@ import { styles } from "./styles";
 import axios from "axios";
 
 import { useIsFocused } from "@react-navigation/native";
+import usePersist from "../../hooks/usePersist";
 export function EditarInformacoes({ route }) {
   const [text, onChangeText] = React.useState("");
   const [number, onChangeNumber] = React.useState(null);
   const [focusComponent, setFocusComponent] = React.useState("");
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const [nome, setNome] = useState();
   const [getToken, setToken] = useState(route.params.token);
   const [getUserId, setUserId] = useState(route.params.userId);
+  const { tokenStored, userStored } = usePersist();
 
   async function pegarNome() {
-    await axios.get(`${REMOTE_URL}/usuarios/${getUserId}`).then(results => {
-      setNome(results.data.nome)
-    })
+    await axios.get(`${REMOTE_URL}/usuarios/${getUserId}`).then((results) => {
+      setNome(results.data.nome);
+    });
   }
 
   async function editarNome() {
-    await axios.put(`${REMOTE_URL}/usuarios/${getUserId}`, {
-      nome: nome
-    }, {
-      headers: {
-        Authorization: `Bearer ${getToken}`
-      }
-    }).then(results => {
-      alert('Nome atualizado!')
-      pegarNome()
-    })
+    await axios
+      .put(
+        `${REMOTE_URL}/usuarios/${getUserId}`,
+        {
+          nome: nome,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${getToken}`,
+          },
+        }
+      )
+      .then((results) => {
+        alert("Nome atualizado!");
+        pegarNome();
+      });
   }
 
   const refresh = useIsFocused();
@@ -58,8 +64,8 @@ export function EditarInformacoes({ route }) {
       setUserId(userId);
     }
 
-    pegarNome()
-  }, [refresh])
+    pegarNome();
+  }, [refresh]);
 
   return (
     <View style={styles.container}>
@@ -73,14 +79,14 @@ export function EditarInformacoes({ route }) {
             <Text style={styles.Text}>Nome</Text>
             <TextInput
               placeholder="Insira o seu nome"
-              onChangeText={value => setNome(value)}
+              onChangeText={(value) => setNome(value)}
               value={nome}
               style={
                 focusComponent === "name"
                   ? {
-                    ...styles.bloco,
-                    ...{ borderColor: "#772583", borderWidth: 2 },
-                  }
+                      ...styles.bloco,
+                      ...{ borderColor: "#772583", borderWidth: 2 },
+                    }
                   : styles.bloco
               }
               onFocus={() => {
@@ -125,21 +131,34 @@ export function EditarInformacoes({ route }) {
               }}
             /> */}
 
-            <Button onPress={() => editarNome()}
+            <Button
+              onPress={() => editarNome()}
               title="Salvar"
               color={THEME.COLORS.PRIMARY}
-
             ></Button>
-
           </View>
         </SafeAreaView>
       </ScrollView>
 
       <Footer
-        homePress={() => navigation.navigate("Home", { userId: getUserId, token: getToken })}
-        anuncioPress={() => navigation.navigate("AnuncioPet", { userId: getUserId, token: getToken })}
-        chatPress={() => navigation.navigate("Conversations", { userId: getUserId, token: getToken })}
-        perfilPress={() => navigation.navigate("Perfil", { userId: getUserId, token: getToken })}
+        homePress={() =>
+          navigation.navigate("Home", { userId: getUserId, token: getToken })
+        }
+        anuncioPress={() =>
+          navigation.navigate("AnuncioPet", {
+            userId: getUserId,
+            token: getToken,
+          })
+        }
+        chatPress={() =>
+          navigation.navigate("Conversations", {
+            userId: getUserId,
+            token: getToken,
+          })
+        }
+        perfilPress={() =>
+          navigation.navigate("Perfil", { userId: getUserId, token: getToken })
+        }
       />
     </View>
   );

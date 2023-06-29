@@ -22,32 +22,26 @@ import axios from "axios";
 import { REMOTE_URL } from "../../utils/url";
 import usePersist from "../../hooks/usePersist";
 
-export function Home({ route, navigation }) {
-  const { tokenStored, userStored } = usePersist();
+export function Home({ navigation }) {
+  const { tokenStored } = usePersist();
 
-  const [getToken, setToken] = useState();
-  const [getUserId, setUserId] = useState();
   const [maisModal, setMaisModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
   const [selectValue, setSelectValue] = useState("Localização");
+
   const [getData, setData] = useState([]);
 
   const refresh = useIsFocused();
-  useEffect(() => {
-    if (route.params) {
-      const { token } = route.params;
-      const { userId } = route.params;
-      setToken(token);
-      setUserId(userId);
-    }
 
+  useEffect(() => {
     async function resgatarDados() {
       const result = await axios(`${REMOTE_URL}/pets/user`, {
         headers: {
-          Authorization: `Beare ${getToken}`,
+          Authorization: `Bearer ${tokenStored}`,
         },
       });
-      setData(result.data);
+      setData(result?.data);
     }
     resgatarDados();
   }, [refresh]);
@@ -188,8 +182,8 @@ export function Home({ route, navigation }) {
             style={styles.pets.link}
             onPress={() => {
               navigation.navigate("TodosOsPets", {
-                userId: getUserId,
-                token: getToken,
+                userId: tokenStored,
+                token: tokenStored,
               });
             }}
           >
@@ -211,8 +205,8 @@ export function Home({ route, navigation }) {
                 onPress={() => {
                   navigation.navigate("InfoPet", {
                     petInfo: item,
-                    userId: getUserId,
-                    token: getToken,
+                    userId: tokenStored,
+                    token: tokenStored,
                   });
                 }}
               >
@@ -239,26 +233,7 @@ export function Home({ route, navigation }) {
         />
       </SafeAreaView>
 
-      <Footer
-        homePress={() =>
-          navigation.navigate("Home", { userId: getUserId, token: getToken })
-        }
-        anuncioPress={() =>
-          navigation.navigate("AnuncioPet", {
-            userId: getUserId,
-            token: getToken,
-          })
-        }
-        chatPress={() =>
-          navigation.navigate("Conversations", {
-            userId: getUserId,
-            token: getToken,
-          })
-        }
-        perfilPress={() =>
-          navigation.navigate("Perfil", { userId: getUserId, token: getToken })
-        }
-      />
+      <Footer />
     </>
   );
 }
