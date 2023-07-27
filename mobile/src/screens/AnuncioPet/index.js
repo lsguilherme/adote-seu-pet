@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TextInput,
   Text,
+  ImageBackground
 } from "react-native";
 import { THEME } from "../../theme";
 
@@ -17,6 +18,8 @@ import { REMOTE_URL } from "../../utils/url";
 import usePersist from "../../hooks/usePersist";
 
 import axios from "axios";
+import * as ImagePicker from 'expo-image-picker';
+
 
 export function AnuncioPet() {
   const { tokenStored } = usePersist();
@@ -25,9 +28,31 @@ export function AnuncioPet() {
   const [idade, setIdade] = useState("");
   const [sexo, setSexo] = useState("");
   const [raca, setRaca] = useState("");
+  const [imagem, setimagem] = useState(null);
   const [focusComponent, setFocusComponent] = useState("");
 
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setimagem(result.assets[0].uri);
+    }
+  };
+
   async function cadastroPet() {
+    let formdata = new FormData();
+    formdata.append(nome);
+    formdata.append(idade);
+    formdata.append(sexo);
+    formdata.append(raca);
+    formdata.append(raca);
     await axios
       .post(
         `${REMOTE_URL}/pets/`,
@@ -57,9 +82,24 @@ export function AnuncioPet() {
       <NomeDaPagina nomePagina="Anucie o seu pet" />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <SafeAreaView>
-          <View style={styles.fotoPet}>
-            <Text style={styles.descricaoFotoPet}>ADICIONAR FOTO DO PET</Text>
-          </View>
+          {!imagem ? (
+            <TouchableOpacity
+              style={styles.fotoPet}
+              onPress={pickImage}>
+              <View>
+                <Text style={styles.descricaoFotoPet}>ADICIONAR FOTO DO PET</Text>
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <ImageBackground source={{
+              uri: imagem.uri
+            }} resizeMode="cover" style={[styles.fotoPet, { width: 370, height: "30%" }]}>
+              <TouchableOpacity
+                style={styles.fotoPet}
+                onPress={pickImage}>
+              </TouchableOpacity>
+            </ImageBackground>
+          )}
           <View style={styles.blocoInterno}>
             <Text style={styles.Text}>Nome do Pet</Text>
             <TextInput
@@ -69,9 +109,9 @@ export function AnuncioPet() {
               style={
                 focusComponent === "name"
                   ? {
-                      ...styles.bloco,
-                      ...{ borderColor: "#772583", borderWidth: 2 },
-                    }
+                    ...styles.bloco,
+                    ...{ borderColor: "#772583", borderWidth: 2 },
+                  }
                   : styles.bloco
               }
               onFocus={() => {
@@ -86,9 +126,9 @@ export function AnuncioPet() {
               style={
                 focusComponent === "idade"
                   ? {
-                      ...styles.bloco,
-                      ...{ borderColor: "#772583", borderWidth: 2 },
-                    }
+                    ...styles.bloco,
+                    ...{ borderColor: "#772583", borderWidth: 2 },
+                  }
                   : styles.bloco
               }
               onFocus={() => {
@@ -104,9 +144,9 @@ export function AnuncioPet() {
               style={
                 focusComponent === "raça"
                   ? {
-                      ...styles.bloco,
-                      ...{ borderColor: "#772583", borderWidth: 2 },
-                    }
+                    ...styles.bloco,
+                    ...{ borderColor: "#772583", borderWidth: 2 },
+                  }
                   : styles.bloco
               }
               onFocus={() => {
@@ -121,9 +161,9 @@ export function AnuncioPet() {
               style={
                 focusComponent === "sexo"
                   ? {
-                      ...styles.bloco,
-                      ...{ borderColor: "#772583", borderWidth: 2 },
-                    }
+                    ...styles.bloco,
+                    ...{ borderColor: "#772583", borderWidth: 2 },
+                  }
                   : styles.bloco
               }
               onFocus={() => {

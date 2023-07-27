@@ -1,3 +1,5 @@
+<!-- container rabbitmq -->
+<!-- docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management -d -->
 # <img src="/mobile/src/assets/Logo-Cadastro.png" alt="React Native Icon" height="50" style="margin-right: 10px; transform: translateY(10px)"/> Adote Seu Pet
 
 Adote Seu Pet é uma solução para conectar pessoas interessadas em

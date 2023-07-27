@@ -1,13 +1,17 @@
-import express from 'express'
-const router = express.Router()
+import express from 'express';
+import multer from 'multer';
 
-import { buscarPetsFavoritados, favoritarPet, getPet, getPets, getPetsUser, getPetUser, removePet, savePet, updatePet } from "../controller/pets.js";
+const router = express.Router();
+const upload = multer({storage: multer.memoryStorage()});
+
+import { buscarPetsFavoritados, favoritarPet, getPet, getPets, getPetsUser, getPetUser, removePet, salvarFotoPet, savePet, updatePet } from "../controller/pets.js";
 import { auth } from './middlewares/authPets.js';
 
 
-router.post('/', auth, savePet);
+router.post('/', auth, upload.single('imagem'), savePet);
+router.post('/foto', upload.single('foto'), salvarFotoPet);
 router.post('/favorito/:id', auth, favoritarPet);
-router.put('/:id', updatePet);
+router.put('/:id', upload.single('imagem'), updatePet);
 router.delete('/:id', removePet);
 router.get('/user', getPetsUser);
 router.get('/favorito', auth, buscarPetsFavoritados);

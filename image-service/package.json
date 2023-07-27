@@ -1,0 +1,21 @@
+{
+  "name": "image-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.378.0",
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1",
+    "sharp": "^0.32.4"
+  }
+}
