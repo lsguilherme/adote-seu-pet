@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   TextInput,
   Text,
-  ImageBackground
+  Image,
 } from "react-native";
 import { THEME } from "../../theme";
 
@@ -39,42 +39,43 @@ export function AnuncioPet() {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.canceled) {
-      setimagem(result.assets[0].uri);
+      let image = result.assets[0]
+      image["nomeArquivo"] = result.assets[0].uri.split('/').pop()
+      image["tipoArquivo"] = result.assets[0].uri.split('.').pop()
+      setimagem(image);
     }
   };
 
   async function cadastroPet() {
     let formdata = new FormData();
-    formdata.append(nome);
-    formdata.append(idade);
-    formdata.append(sexo);
-    formdata.append(raca);
-    formdata.append(raca);
+    formdata.append("nome", nome);
+    formdata.append("idade", idade);
+    formdata.append("sexo", sexo);
+    formdata.append("raca", raca);
+    formdata.append("imagem", {
+      uri: imagem.uri,
+      type: `${imagem.type}/${imagem.tipoArquivo}`,
+      name: imagem.nomeArquivo,
+    });
+    formdata.append("longitude", "");
+    formdata.append("latitude", "");
     await axios
       .post(
         `${REMOTE_URL}/pets/`,
-        {
-          nome: nome,
-          idade: idade,
-          sexo: sexo,
-          raca: raca,
-          imagem: "https://static.thenounproject.com/png/1951910-200.png",
-          longitude: "",
-          latitude: "",
-        },
+        formdata,
         {
           headers: {
             Authorization: `Bearer ${tokenStored}`,
+            'Content-Type': 'multipart/form-data'
           },
         }
-      )
-      .then(() => {
+      ).then(() => {
         alert("Cadastrado");
-      })
-      .catch((err) => alert(err));
+      }).catch((err) => {
+        console.log(err)
+        alert(err)
+      });
   }
 
   return (
@@ -82,24 +83,22 @@ export function AnuncioPet() {
       <NomeDaPagina nomePagina="Anucie o seu pet" />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <SafeAreaView>
-          {!imagem ? (
-            <TouchableOpacity
-              style={styles.fotoPet}
-              onPress={pickImage}>
-              <View>
+          <TouchableOpacity onPress={pickImage}>
+            <View style={[styles.fotoPet, { width: 350, height: 250 }]}>
+              {!imagem ? (
                 <Text style={styles.descricaoFotoPet}>ADICIONAR FOTO DO PET</Text>
-              </View>
-            </TouchableOpacity>
-          ) : (
-            <ImageBackground source={{
-              uri: imagem.uri
-            }} resizeMode="cover" style={[styles.fotoPet, { width: 370, height: "30%" }]}>
-              <TouchableOpacity
-                style={styles.fotoPet}
-                onPress={pickImage}>
-              </TouchableOpacity>
-            </ImageBackground>
-          )}
+              ) : (
+                <Image source={{ uri: imagem.uri }}
+                  style={{
+                    backgroundColor: 'black',
+                    height: "100%",
+                    width: '100%',
+                    objectFit: 'contain'
+                  }} />
+              )}
+            </View>
+          </TouchableOpacity>
+          {/* )} */}
           <View style={styles.blocoInterno}>
             <Text style={styles.Text}>Nome do Pet</Text>
             <TextInput
@@ -182,7 +181,8 @@ export function AnuncioPet() {
                   borderRadius: 8,
                 }}
                 activeOpacity={0.7}
-                onPress={() => cadastroPet()}
+                disabled={!imagem || !nome || !idade || !sexo || !raca}
+                onPress={cadastroPet}
               >
                 <Text
                   style={{ color: "white", fontWeight: "bold", fontSize: 16 }}

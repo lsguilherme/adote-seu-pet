@@ -70,7 +70,7 @@ export function InfoPet({ route, navigation }) {
       <View key={info.id}>
         <Image
           source={{ uri: info.imagem }}
-          style={{ width: 400, height: 300 }}
+          style={{ width: 400, height: 300, objectFit: 'contain', backgroundColor: 'black' }}
         />
 
         <View style={{ flexDirection: "row", marginTop: 16 }}>
